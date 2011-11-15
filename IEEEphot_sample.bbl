@@ -1,0 +1,80 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{#1}
+\csname url@rmstyle\endcsname
+\providecommand{\newblock}{\relax}
+\providecommand{\bibinfo}[2]{#2}
+\providecommand\BIBentrySTDinterwordspacing{\spaceskip=0pt\relax}
+\providecommand\BIBentryALTinterwordstretchfactor{4}
+\providecommand\BIBentryALTinterwordspacing{\spaceskip=\fontdimen2\font plus
+\BIBentryALTinterwordstretchfactor\fontdimen3\font minus
+  \fontdimen4\font\relax}
+\providecommand\BIBforeignlanguage[2]{{%
+\expandafter\ifx\csname l@#1\endcsname\relax
+\typeout{** WARNING: IEEEtran.bst: No hyphenation pattern has been}%
+\typeout{** loaded for the language `#1'. Using the pattern for}%
+\typeout{** the default language instead.}%
+\else
+\language=\csname l@#1\endcsname
+\fi
+#2}}
+
+\bibitem{Mizuuchi2002}
+I.~Mizuuchi, R.~Tajima, T.~Yoshikai, D.~Sato, K.~Nagashima, M.~Inaba,
+  Y.~Kuniyoshi, and H.~Inoue, ``The design and control of the flexible spine of
+  a fully tendon-driven humanoid {``}{K}enta{"},'' in \emph{Proceedings of the
+  2002 IEEE/RSJ International Conference on Intelligent Robots and Systems},
+  vol.~3, Lausanne, Switzerland, 2002, pp. 2527--2532.
+
+\bibitem{Mizuuchi2003}
+I.~Mizuuchi, H.~Waita, Y.~Nakanishi, T.~Yoshikai, M.~Inaha, and H.~Inoue, ``A
+  musculo-skeletal robot leg capable of adding or rearranging the muscles,'' in
+  \emph{21th Annual Conference of the Robotics Society of Japan}.\hskip 1em
+  plus 0.5em minus 0.4em\relax Robotics Society of Japan, Tokyo, Japan, 2003,
+  presentation number: 1C29.
+
+\bibitem{Mizuuchi2005}
+I.~Mizuuchi, T.~Yoshiaki, Y.~Nakanishi, and M.~Inaba, ``A reinforceable-muscle
+  flexible-spine humanoid {``}{Kenji}{"},'' in \emph{IEEE/RSJ International
+  Conference on Intelligent Robots and Systems (IROS)}, 2005, pp. 692--697.
+
+\bibitem{Mizuuchi2007}
+I.~Mizuuchi, Y.~Nakanishi, Y.~Sodeyama, Y.~Namiki, T.~Nishino, N.~Muramatsu,
+  J.~Urata, K.~Hongo, T.~Yoshikai, and M.~Inaba, ``{An Advanced Musculoskeletal
+  Humanoid Kojiro},'' in \emph{Proceedings of the 2007 IEEE-RAS International
+  Conference on Humanoid Robotics}, 2007, pp. 101--106.
+
+\bibitem{Nakanishi2007}
+Y.~Nakanishi, Y.~Namiki, K.~Hongo, J.~Urata, I.~Mizuuchi, and M.~Inaba,
+  ``Design of the musculoskeletal trunk and realization of powerful motions
+  using spines,'' in \emph{Proceedings of the 2007 IEEE-RAS International
+  Conference on Humanoid Robotics}, 2007,
+  \url{http://planning.cs.cmu.edu/humanoids07/p/85.pdf}.
+
+\bibitem{Ott2006}
+C.~Ott, O.~Eiberger, W.~Friedl, B.~Bauml, U.~Hillenbrand, C.~Borst,
+  A.~Albu-Schaffer, B.~Brunner, H.~Hischmuller, S.~Kielhofer, R.~Konietschke,
+  M.~Suppa, T.~Wimbock, F.~Zacharias, and G.~Hirzinger, ``A humanoid two-arm
+  system for dexterous manipulation,'' in \emph{Proceedings of the 2006
+  IEEE-RAS International Conference on Humanoid Robotics}, 2006, pp. 276--283.
+
+\bibitem{Or2006a}
+J.~Or, ``A control system for a flexible spine belly dancing humanoid,''
+  \emph{Artificial Life}, vol.~12, no.~1, pp. 63--87, 2006.
+
+\bibitem{Or2005a}
+J.~Or and A.~Takanishi, ``From lamprey to humanoid: The design and control of a
+  flexible spine belly dancing humanoid robot with inspiration from biology,''
+  \emph{International Journal of Humanoid Robotics}, pp. 81--104, 2005.
+
+\bibitem{Or2007}
+------, ``The effect of an emotional belly dancing robot on human
+  perceptions.'' \emph{International Journal of Humanoid Robotics}, vol.~4,
+  no.~1, pp. 21--48, 2007.
+
+\bibitem{Or2008}
+J.~Or, ``The development of emotional flexible spine humanoid robots,'' in
+  \emph{{Affective Computing, Emotion Expression, Synthesis and Recognition}},
+  J.~Or, Ed.\hskip 1em plus 0.5em minus 0.4em\relax Advanced Robotics Systems,
+  2008.
+
+\end{thebibliography}
