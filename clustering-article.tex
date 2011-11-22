@@ -56,6 +56,16 @@ There are two alternating steps:
 
 	TODO
 
+Although it can be proved that the procedure will always terminate (converge),
+the k-means algorithm does not necessarily find the most optimal configuration,
+corresponding to the global objective function minimum. The algorithm is also sensitive 
+to the initial selected cluster centroids but it can be run multiple times to reduce this effect.
+
+Another interesting fact is that, in the worst case, k-means can be very slow to converge:
+in particular it has been shown that there exist certain point sets,
+even in 2 dimensions, on which k-means takes exponential time, that is 2(n), to converge.
+These point sets do not seem to arise in practice: this is corroborated by the
+fact that the smoothed running time of k-means is polynomial.
 
 \subsection{Evolving Clustering Method}
 
