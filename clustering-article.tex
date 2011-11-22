@@ -22,6 +22,9 @@ Machine learning, clustering, k-means, ECMC, Expectation Maximization.
 
 \section{Introduction}
 
+What is clustering? It's an unsupervised machine learning task. Computationally difficult
+(NP-hard). Heuristic algorithms. Iterative refinements.
+
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
 \section{Related work}
@@ -31,6 +34,28 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 \section{Algorithms}
 
 \subsection{k-means}
+k-means clustering (KMC) is a simple and well known algorithm. It is usually very
+fast (commonly run multiple times with different starting conditions), but tends
+to produce spherical clusters (with similar size), which is often undesirable.
+k-means is often used as a preprocessing step for other algorithms. The standard
+algorithm was first proposed by Stuart Lloyd in 1957 and published later in 1982.
+
+The number of cluster we want to find in data is fixed a priori (k). We will call
+the centroid m1, m2, ... mk. The algorithm iteratively refines
+locations of clusters' centroids, until no more refinements
+are possible or max number of iterations has been reached.
+There are two alternating steps:
+
+- assignment step: examples are assigned to closest clusters
+  (we can define closest as smallest euclidean distance), that is: example xi
+  is assigned to cluster Cl if dis(xi, ml) < dis(xj, mu) for u = 1...k, u != l
+
+- update step: new means are calculated and set as centroids:
+
+    ml = 1/N sum xki
+
+	TODO
+
 
 \subsection{Evolving Clustering Method}
 
