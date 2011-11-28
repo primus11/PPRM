@@ -1,10 +1,10 @@
-import pylab
-
 showImages = 0
 saveImages = 0
 imgFilename = 'default'
 savedImages = {}
 imageTitle = ''
+
+import pylab
 
 def setImgTitle(title):
 	global imgFilename #...
@@ -14,7 +14,7 @@ def setImgTitle(title):
 	imageTitle = title
 	
 	title.replace
-	title = title.replace(' ', '')[:7] #taking only first seven characters...
+	title = title.replace(' ', '')[:14] #taking only first seven characters...
 	if not savedImages.has_key(title):
 		imgFilename = title
 		savedImages[title] = 0

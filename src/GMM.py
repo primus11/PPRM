@@ -1,4 +1,5 @@
-execfile("drawing.py")
+import drawing as draw
+draw.savedImages = {}
 
 import numpy as np
 import pylab as pl
@@ -6,9 +7,8 @@ from sklearn import mixture
 
 execfile("data.py")
 
-testAll = 0
 
-def GMM(data, clusters):
+def GMM(data, clusters, dataNr = 0):
 	clf = mixture.GMM(n_components=5) #, cvtype='full')
 	clf.fit(data)
 
@@ -24,21 +24,20 @@ def GMM(data, clusters):
 
 	pl.scatter(data[:, 0], data[:, 1], .8)
 
-	setImgTitle('GMM')
-	showImage()
+	draw.setImgTitle('GMM_test' + str(dataNr))
+	draw.showImage()
 
 
-def testGMM(testNr):
-	global showImages
-	showImages = 1
-	if testNr > 0:
-		data, clusters = getTestData(testNr)
-		GMM(data, clusters)
+def testGMM(dataNr):
+	draw.showImages = 1
+	if dataNr > 0:
+		data, clusters = getTestData(dataNr)
+		GMM(data, clusters, dataNr)
 	else:
-		for i in range(allTests):
-			data, clusters = getTestData(i)
-			GMM(data, clusters)
-	showImages = 0
+		for i in range(testCount):
+			data, clusters = getTestData(i+1)
+			GMM(data, clusters, dataNr+1)
+	draw.showImages = 0
 
-if testAll == 0:	
-	testGMM(1)
+	
+testGMM(0)

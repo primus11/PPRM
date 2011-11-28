@@ -1,9 +1,9 @@
 import numpy
 
-allTests = 1	
+testCount = 1	
 
 def getTestData(nr): #+format
-	if nr == 0:
+	if nr == 1:
 		return generateSimpleData()
 
 def generateSimpleData():
