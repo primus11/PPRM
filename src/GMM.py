@@ -6,6 +6,8 @@ from sklearn import mixture
 
 execfile("data.py")
 
+testAll = 0
+
 def GMM(data, clusters):
 	clf = mixture.GMM(n_components=5) #, cvtype='full')
 	clf.fit(data)
@@ -30,11 +32,13 @@ def testGMM(testNr):
 	global showImages
 	showImages = 1
 	if testNr > 0:
-		GMM(getTestData(testNr))
+		data, clusters = getTestData(testNr)
+		GMM(data, clusters)
 	else:
 		for i in range(allTests):
 			data, clusters = getTestData(i)
 			GMM(data, clusters)
 	showImages = 0
-			
-#testGMM(0)
+
+if testAll == 0:	
+	testGMM(1)
