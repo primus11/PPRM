@@ -1,1 +1,9 @@
-test test test
+Python packages for clustering:
+
+SciPy - www.scipy.org (kmeans)
+python-cluster - sourceforge.net/projects/python-cluster
+PyPR - pypr.sourceforge.net (kmeans, gaussian mixture models - GMM)
+scikit - scikit-learn.org/stable/modules/clustering.html (kmeans, GMM, DB-SCAN, hierarchical)
+
+examples:
+http://www.ar.media.kyoto-u.ac.jp/members/david/softwares/em/
