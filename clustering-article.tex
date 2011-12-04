@@ -1,5 +1,6 @@
 \documentclass[]{IEEEphot}
 \usepackage[utf8]{inputenc}
+\usepackage[parfill]{parskip}
 
 \jvol{xx}
 \jnum{xx}
@@ -31,8 +32,8 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 
 At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 
+\newpage
 \section{Algorithms}
-
 \subsection{k-means}
 k-means clustering (KMC) is a simple and well known algorithm. It is usually very
 fast (commonly run multiple times with different starting conditions), but tends
@@ -40,32 +41,45 @@ to produce spherical clusters (with similar size), which is often undesirable.
 k-means is often used as a preprocessing step for other algorithms. The standard
 algorithm was first proposed by Stuart Lloyd in 1957 and published later in 1982.
 
-The number of cluster we want to find in data is fixed a priori (k). We will call
-the centroid m1, m2, ... mk. The algorithm iteratively refines
-locations of clusters' centroids, until no more refinements
-are possible or max number of iterations has been reached.
+The number of clusters we want to find in data is fixed a priori ($k$).
+The algorithm iteratively refines clusters' centroids,
+until no more refinements are possible (centroids do not move anymore)
+or max number of iterations has been reached. $m_1^{(1)}$, $m_2^{(1)}$, ..., $m_k^{(1)}$
+denote centroids (also called means). The superscript index denotes the current iteration.
 There are two alternating steps:
 
-- assignment step: examples are assigned to closest clusters
-  (we can define closest as smallest euclidean distance), that is: example xi
-  is assigned to cluster Cl if dis(xi, ml) < dis(xj, mu) for u = 1...k, u != l
+\begin{itemize}
+\item \textbf{Assignment step}\\
+  Each example is assigned to the cluster with the closest centroid:\\
+  $S_i^{(t)} = \{x_j : ||x_j - m_i^{(t)}|| \le ||x_j - m_l^{(t)}|| \forall l = 1, ..., k\}$
+\\
+\item \textbf{Update step}\\
+  New means are calculated and set as centroids:\\
+  $m_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \displaystyle\sum\limits_{x_j \in S_i^{(t)}}{x_j}$
+\end{itemize}
 
-- update step: new means are calculated and set as centroids:
+There are two common ways to select initial centroids: random seed and random partition.
+The random seed method randomly chooses k observations from the data set
+and uses these as the initial means. Random partition
+assigns each example into one of the k clusters randomly.
+The random seed method tends to spread the initial means out, while random partition
+places all of them close to the center of the data set.
 
-    ml = 1/N sum xki
+There are also better approaches to initialization. k-means++ algorithm specifies a
+procedure to initialize the cluster centers before proceeding with the standard k-means
+optimization iterations. With the k-means++ initialization, the algorithm is guaranteed
+to find a solution that is $O(\log k)$ competitive to the optimal k-means solution.
 
-	TODO
-
-Although it can be proved that the procedure will always terminate (converge),
-the k-means algorithm does not necessarily find the most optimal configuration,
-corresponding to the global objective function minimum. The algorithm is also sensitive 
+Although it can be proved that the k-means algorithm will always terminate (converge),
+it does not necessarily find the most optimal configuration,
+corresponding to the global objective function minimum. The algorithm is also sensitive
 to the initial selected cluster centroids but it can be run multiple times to reduce this effect.
 
 Another interesting fact is that, in the worst case, k-means can be very slow to converge:
 in particular it has been shown that there exist certain point sets,
-even in 2 dimensions, on which k-means takes exponential time, that is 2(n), to converge.
-These point sets do not seem to arise in practice: this is corroborated by the
-fact that the smoothed running time of k-means is polynomial.
+even in 2 dimensions, on which k-means takes exponential time to converge.
+These point sets do not seem to arise in practice: this is supported by the
+fact that the smoothed time complexity of k-means is polynomial.
 
 \subsection{Evolving Clustering Method}
 
