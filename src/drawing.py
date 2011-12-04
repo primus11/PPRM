@@ -1,4 +1,4 @@
-showImages = 0
+showImages = 1
 saveImages = 0
 imgFilename = 'default'
 savedImages = {}

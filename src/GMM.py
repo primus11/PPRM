@@ -6,14 +6,15 @@ import pylab as pl
 from sklearn import mixture
 
 execfile("data.py")
+#call reloadData() if needed
 
 
 def GMM(data, clusters, dataNr = 0):
-	clf = mixture.GMM(n_components=5) #, cvtype='full')
+	clf = mixture.GMM(n_components=clusters) #, cvtype='full')
 	clf.fit(data)
-
-	x = np.linspace(-10.0, 30.0)
-	y = np.linspace(-10.0, 30.0)
+	
+	x = np.linspace(min([x[0] for x in data]), max([x[0] for x in data]))
+	y = np.linspace(min([y[1] for y in data]), max([y[1] for y in data]))
 	X, Y = np.meshgrid(x, y)
 	XX = np.c_[X.ravel(), Y.ravel()]
 
@@ -28,16 +29,4 @@ def GMM(data, clusters, dataNr = 0):
 	draw.showImage()
 
 
-def testGMM(dataNr):
-	draw.showImages = 1
-	if dataNr > 0:
-		data, clusters = getTestData(dataNr)
-		GMM(data, clusters, dataNr)
-	else:
-		for i in range(testCount):
-			data, clusters = getTestData(i+1)
-			GMM(data, clusters, dataNr+1)
-	draw.showImages = 0
-
-	
-testGMM(0)
+test(0, GMM)
