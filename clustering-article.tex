@@ -37,7 +37,7 @@ At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praese
 \subsection{k-means}
 k-means clustering (KMC) is a simple and well known algorithm. It is usually very
 fast (commonly run multiple times with different starting conditions), but tends
-to produce spherical clusters (with similar size), which is often undesirable.
+to produce spherical clusters with similar size, which can be undesirable.
 k-means is often used as a preprocessing step for other algorithms. The standard
 algorithm was first proposed by Stuart Lloyd in 1957 and published later in 1982.
 
@@ -46,7 +46,8 @@ The algorithm iteratively refines clusters' centroids,
 until no more refinements are possible (centroids do not move anymore)
 or max number of iterations has been reached. $m_1^{(1)}$, $m_2^{(1)}$, ..., $m_k^{(1)}$
 denote centroids (also called means). The superscript index denotes the current iteration.
-There are two alternating steps:
+$S_i^{(t)}$ is a cluster (set of examples) with the corresponding centroid $m_i^{(t)}$.
+There are two alternating steps in the algorithm:
 
 \begin{itemize}
 \item \textbf{Assignment step}\\
@@ -58,19 +59,21 @@ There are two alternating steps:
   $m_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \displaystyle\sum\limits_{x_j \in S_i^{(t)}}{x_j}$
 \end{itemize}
 
-There are two common ways to select initial centroids: random seed and random partition.
+There are two common ways to select the initial centroids: random seed and random partition.
 The random seed method randomly chooses k observations from the data set
 and uses these as the initial means. Random partition
 assigns each example into one of the k clusters randomly.
 The random seed method tends to spread the initial means out, while random partition
 places all of them close to the center of the data set.
 
-There are also better approaches to initialization. k-means++ algorithm specifies a
+There are also better approaches to initialization: k-means++ algorithm specifies a
 procedure to initialize the cluster centers before proceeding with the standard k-means
 optimization iterations. With the k-means++ initialization, the algorithm is guaranteed
 to find a solution that is $O(\log k)$ competitive to the optimal k-means solution.
+Although this initial selection takes extra time, it speeds up the convergence and 
+therefore actually lowers overall computation time.
 
-Although it can be proved that the k-means algorithm will always terminate (converge),
+Although it can be proved that the KMC algorithm will always terminate (converge),
 it does not necessarily find the most optimal configuration,
 corresponding to the global objective function minimum. The algorithm is also sensitive
 to the initial selected cluster centroids but it can be run multiple times to reduce this effect.
