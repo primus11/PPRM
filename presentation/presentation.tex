@@ -7,7 +7,7 @@
 
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
 \begin{document}
-\title{Clustering overview}
+\title{Clustering Overview}
 \author{FRI}
 \date{\today} 
 
@@ -16,59 +16,63 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Table of contents}
-\tableofcontents
+\frametitle{Applications of Clustering}
+    \begin{columns}[t]
+        \begin{column}[T]{9cm}
+        \begin{itemize}
+        \item YCbCr image compression
+        \item Reading digits from images (Google)
+        \end{itemize}
+
+        \vspace{10mm}
+        \hspace{7mm}
+        \includegraphics[height=4cm]{googlehousenumbers.jpg}
+
+        \end{column}
+
+        \begin{column}[T]{10cm}
+        \includegraphics[height=7cm]{YCbCr-separation-small.jpg}
+        \end{column}
+    \end{columns}
 \end{frame} 
 
-
-\section{Section no.1} 
-\begin{frame}\frametitle{Title} 
-Each frame should have a title.
-\end{frame}
-\subsection{Subsection no.1.1  }
-\begin{frame} 
-Without title somethink is missing. 
-\end{frame}
-
-
-\section{Section no. 2} 
-\subsection{Lists I}
-\begin{frame}\frametitle{unnumbered lists}
-\begin{itemize}
-\item Introduction to  \LaTeX  
-\item Course 2 
-\item Termpapers and presentations with \LaTeX 
-\item Beamer class
-\end{itemize} 
-\end{frame}
-
-\begin{frame}\frametitle{lists with pause}
-\begin{itemize}
-\item Introduction to  \LaTeX \pause 
-\item Course 2 \pause 
-\item Termpapers and presentations with \LaTeX \pause 
-\item Beamer class
-\end{itemize} 
-\end{frame}
-
-\subsection{Lists II}
-\begin{frame}\frametitle{numbered lists}
-\begin{enumerate}
-\item Introduction to  \LaTeX  
-\item Course 2 
-\item Termpapers and presentations with \LaTeX 
-\item Beamer class
-\end{enumerate}
+\begin{frame}
+\frametitle{YCbCr image compression}
+    \begin{itemize}
+    \item Human eye more sensitive to brightness than color
+    \item Can reduce the bandwith of the chrominance channels
+    \item Chroma subsampling
+    \item NTSC, PAL, MPEG, JPEG
+    \item Color quantization
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{numbered lists with pause}
-\begin{enumerate}
-\item Introduction to  \LaTeX \pause 
-\item Course 2 \pause 
-\item Termpapers and presentations with \LaTeX \pause 
-\item Beamer class
-\end{enumerate}
+\frametitle{YCbCr image compression}
+    \begin{figure}[htb]
+    \includegraphics[scale=0.3]{YCbCr-normal.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{YCbCr image compression}
+    \begin{figure}[htb]
+    \includegraphics[scale=0.3]{YCbCr-bw.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{YCbCr image compression}
+    \begin{figure}[htb]
+    \includegraphics[scale=0.3]{YCbCr-cb.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{YCbCr image compression}
+    \begin{figure}[htb]
+    \includegraphics[scale=0.3]{YCbCr-cr.jpg}
+    \end{figure}
 \end{frame}
 
 \end{document}
