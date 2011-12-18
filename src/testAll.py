@@ -7,3 +7,4 @@ draw.showImages = 0
 
 execfile("GMM.py")
 execfile("DBSCAN.py")
+execfile("ECMC.py") #this is kinda slow so...

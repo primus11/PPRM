@@ -81,6 +81,46 @@ fact that the smoothed time complexity of k-means is polynomial.
 
 \subsection{Evolving Clustering Method}
 
+ECM (Evolving Clustering Method) is dynamic clustering method mostly used for on-line system with fast "one-pass" algorithm. It's extension ECMc (Evolving Clustering Method with Constrained minimization) is used for off-line where constrained optimisation is applied. Both ECM and it's extension were introduced in 2001 by Qun Song and Nikola Kasabov.
+
+ECM is a distance based clustering method where each cluster has a centre, where all of cluster's members are less distant from the centre than $D_{thr}$. $D_{thr}$ is by default input in algorithm, unlike to some others where number of cluster is input. However, $D_{thr}$ does affect number of clusters but not directly. Therefore, when comparing ECM algorithm to others you have to be aware of their inputs.
+
+ECM takes samples from a data stream and with every new data cluster's radius can be updated or it's center changed or new cluster can be created. At some point, usually when cluster radius reaches threshold value $D_{thr}$, cluster radius will not update anymore.
+
+Both ECM and ECMc consist of several steps where ECM is a pre-process to ECMc. First sample is used to create first cluster with radius 0 and centre on the sample itself. For every new sample $x_i$ next steps are taken:
+\begin{enumerate}
+\item Distance from $x_i$ to every cluster centre is calculated as shown in equation \ref{ECMdist}.
+\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
+\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster is created and algorithm continues at step 1.
+\item Cluster's centre, with minumum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and centre's position is on the line from old centre to sample $x_i$ so that distance from new centre to point $x_i$ is equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
+\end{enumerate}
+
+\begin{equation}\label{ECMdist}
+dist(i,j) = \sqrt{ \frac {\sum_{d=1}^{D} (x_i^d - C_{cj}^d)^2} {D}}
+\end{equation}
+
+\begin{equation}\label{ECMequ1}
+s(i, j) = dist(i,j) + radius(C_j)
+\end{equation}
+
+\begin{equation}\label{ECMequ2}
+f = 1 - \frac {\frac {s} {2}} {\sqrt{ \sum_{d=1}^{D} (C_c^d - x_i^d)}}
+\end{equation}
+\begin{equation}\label{ECMequ3}
+Cc^d = Cc^d + (f * (x_i^d - C_c^d))
+\end{equation}
+
+This way it holds for each sample in its own cluster that the distance between centre and sample is less than or equal to $D_{thr}$. Afterwards constrained optimisation can be applied to minimize the function \ref{ECMJ}. For optimisation the following steps have to be taken:
+\begin{enumerate}
+\item 1. Change the membership of each sample in data to cluster that has the smallest distance to it's centre
+\item 2. Calculate new cluster centre to fit new changes
+\item 3. The end of algorithm is reached if enough iterations occured or the change of function \ref{ECMJ} is less than certain amount. Otherwise continue with going back to step 1.
+\end{enumerate}
+
+\begin{equation}\label{ECMJ}
+J = \sum_{k=1}^K \sum_{i=1}^{N_{Ck}} dist(x_{ki}, C_{ck})
+\end{equation}
+
 \subsection{Expectation Maximization Gaussian Mixture Model}
 
 \subsection{Cauchy-Schwarz Divergence Clustering}
