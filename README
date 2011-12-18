@@ -7,3 +7,6 @@ scikit - scikit-learn.org/stable/modules/clustering.html (kmeans, GMM, DB-SCAN, 
 
 examples:
 http://www.ar.media.kyoto-u.ac.jp/members/david/softwares/em/
+
+Learning resources:
+http://en.wikipedia.org/wiki/Cluster_analysis (large overview, missing some newer research)
