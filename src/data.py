@@ -44,4 +44,4 @@ def test(dataNr, func):
 	else:
 		for i in range(len(dataList)):
 			data, clusters = getTestData(i+1)
-			func(data, clusters, dataNr+1)
+			func(data, clusters, i+1)
