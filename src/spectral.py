@@ -9,7 +9,7 @@ from sklearn.metrics import adjusted_rand_score, homogeneity_completeness_v_meas
 import pylab
 
 if len(sys.argv) < 3:
-    sys.exit('Usage: python spectral-example.py dataset k')
+    sys.exit('Usage: python spectral.py dataset k')
 
 ## Data preprocessing
 data = parse_tab(sys.argv[1])
