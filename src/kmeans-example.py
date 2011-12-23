@@ -29,7 +29,7 @@ if __name__ == '__main__':
     img = numpy.array(img, dtype=numpy.float32) / 255
     width, height, d = img.shape
     img_array = numpy.reshape(img, (width * height, d))
-    sample = shuffle(img_array, random_state=0)[:1000]
+    sample = shuffle(img_array, random_state=0)[:10000]
     kmeans = KMeans(k=num_colors, random_state=0)
     kmeans.fit(sample)
     codebook = kmeans.cluster_centers_
