@@ -9,7 +9,7 @@
 %\pubyear{2011}
 
 \begin{document}
-\title{Machine Learning: Clustering algorithms review}
+\title{Clustering Algorithms Overview}
 \author{Mentor, Primož, Matej}
 %\affil{Fakulteta za računalništvo in informatiko}  
 \maketitle
@@ -27,13 +27,71 @@ What is clustering? It's an unsupervised machine learning task. Computationally 
 (NP-hard). Heuristic algorithms. Iterative refinements.
 
 \section{Clustering performance evaluation}
-\subsection{Adjusted Rand Index}
-\subsection{Homogeneity, completeness and V-measure}
+TODO: external/internal evaluation
 
-\newpage
+\subsection{Adjusted Rand Index}
+Rand Index (RI) is a measure of similarity between data clusterings. It counts
+the number of agreements between two clusterings:
+
+$RI = \frac{a+b}{{n \choose 2}}$
+
+where
+\begin{itemize}
+    \item \textit{a} is the number of pairs of elements (points, examples) that are in the same cluster in the first clustering
+    as well as in the other clustering,
+    \item \textit{b} is the number of pairs of elements that are in different clusters in both clusterings,
+    \item \textit{n} is the number of elements.
+\end{itemize}
+
+Adjusted Rand Index (ARI) is the corrected-for-chance version of RI.
+ARI has the advantage over plain RI in that it scores random 
+clusterings close to 0 for any number of clusters and data samples. It returns
+a value in range $[-1, 1]$, where negative values are bad, similar clusterings have
+positive values and 1.0 is the perfect match score. ARI makes no assumption on the cluster
+structure and can therefore be used to compare different algorithms such as K-means (which
+constructs isotropic clusters) with spectral or other algorithms (which can find non-convex
+clusters).
+
+\subsection{Homogeneity, completeness and V-measure}
+Rosenberg and Hirschberg (2007) defined the following two desirable objectives of clustering:
+\begin{itemize}
+    \item \textbf{homogeneity}: each cluster contains only members of a single class and
+    \item \textbf{completeness}: all members of a given class are assigned to the same cluster.
+\end{itemize}
+We can translate these objectives to math in the following way:
+
+$h = 1 - \frac{H(C|K)}{H(C)}$
+
+$c = 1 - \frac{H(K|C)}{H(K)}$
+
+where $H(C|K)$ is the conditional entropy of the classes given the cluster assignments:
+
+$H(C|K) = - \sum\limits_{c=1}^{|C|}\sum\limits_{k=1}^{|K|}\frac{n_{c,k}}{n}\cdot \log{\frac{n_{c,k}}{n_k}}$
+
+and $H(C)$ is the entropy of the classes:
+
+$H(C) = - \sum\limits_{c=1}^{|C|}\frac{n_c}{n} \cdot \log{\frac{n_c}{n}}$
+
+with $n$ the total number of samples, $n_c$ and $n_k$ the number of samples belonging to class
+$c$ and cluster $k$ respectively, and with $n_{c,k}$ the number of samples from class $c$ assigned
+to cluster $k$.
+
+The conditional entropy of clusters given class $H(K|C)$ and the entropy of clusters $H(K)$ are
+defined in a symmetric manner.
+
+Rosenberg and Hirschberg (2007) defined V-measure as the harmonic mean of homogeneity and completeness:
+
+$v = \frac{2 \cdot h \cdot c}{h+c}$
+
+Advantages of these measures are bounded scores ($[0, 1]$, 1.0 means perfect score), intuitive interpretation and that
+no assumption is made on cluster structure (similar to ARI). Unfortunately, they are not normalized
+with respect to random clustering: random clustering will not yield the same values and it won't
+yield zero score when the number of clusters is large compared to the number of samples. For smaller
+sample sizes or larger number of clusters it is better to use an adjusted measure such as ARI.
+
 \section{Algorithms}
-\subsection{k-means}
-k-means clustering (KMC) is a simple and well known algorithm. It is usually very
+\subsection{K-means}
+K-means clustering (KMC) is a simple and well known algorithm. It is usually very
 fast (commonly run multiple times with different starting conditions), but tends
 to produce spherical clusters with similar size, which can be undesirable.
 k-means is often used as a preprocessing step for other algorithms. The standard
