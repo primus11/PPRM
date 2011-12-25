@@ -2,6 +2,7 @@
 \documentclass[conference]{IEEEtran}
 \usepackage[utf8]{inputenc}
 \usepackage[parfill]{parskip}
+\usepackage{tikz}
 
 %\jvol{xx}
 %\jnum{xx}
@@ -25,6 +26,45 @@ Machine learning, clustering, k-means, ECMC, Expectation Maximization.
 \section{Introduction}
 What is clustering? It's an unsupervised machine learning task. Computationally difficult
 (NP-hard). Heuristic algorithms. Iterative refinements. Clustering algorithms taxonomy.
+
+Clustering refers to the problem of partitioning a dataset into subsets, such that members
+within subsets are more similar to each other (according to some criterion) than to members
+of other subsets. Each subset is called a cluster.
+
+Clustering is recognized as an important tool in areas such as image segmentation,
+speech recognition, signal compression, medical research, document storage and retrieval,
+world-wide-web search and mining and bioinformatics.
+
+\begin{tikzpicture}[scale=1.1, text width=1.8cm, text centered]
+    \tikzstyle{every node} = [rectangle,draw]
+
+    \node (a) at (7, 5) {Clustering};
+    \node (b) at (5, 4) {Hierarchical};
+    \node (c) at (9, 3.5) {Partitional};
+
+    \node (d) at (4, 3) [text width=2.1cm] {Agglomerative};
+    \node (e) at (6.2, 3) {Divisive};
+
+    \node (f) at (6, 2) {Function \\ Optimization};
+    \node (g) at (8, 2) {Mixture \\ Models};
+    \node (h) at (10, 2) {Graph \\ Theoretic};
+
+    \node (i) at (5.5, 0.8) {Information \\ Theoretic};
+    \node (j) at (7.5, 0.8) {Squared \\ Error};
+
+    \node (k) at (10, 0.8) {Graph \\ Spectral};
+
+    \draw [-] (a) -- (b);
+    \draw [-] (a) -- (c);
+    \draw [-] (b) -- (d);
+    \draw [-] (b) -- (e);
+    \draw [-] (c) -- (f);
+    \draw [-] (c) -- (g);
+    \draw [-] (c) -- (h);
+    \draw [-] (f) -- (i);
+    \draw [-] (f) -- (j);
+    \draw [-] (h) -- (k);
+\end{tikzpicture}
 
 \section{Clustering performance evaluation}
 TODO: external/internal evaluation
@@ -190,7 +230,7 @@ J = \sum_{k=1}^K \sum_{i=1}^{N_{Ck}} dist(x_{ki}, C_{ck})
 KMC is an example of so-called \textit{parametric} methods of clustering. These
 methods assume some knowledge about clusters' structure, which makes them less
 suitable for many use cases. KMC performs badly when clusters are not hyperelliptical
-because it implicitly assumes Gaussian cluster distributions. Any clustering method
+because it implicitly assumes Gaussian cluster distributions. In fact, any clustering method
 that utilizes second order data statistics can produce only convex clusters (Jain et al., 2000).
 
 Information theory has been successfully used in clustering by several researchers in recent years.
