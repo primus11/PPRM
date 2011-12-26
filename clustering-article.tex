@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[parfill]{parskip}
 \usepackage{tikz}
+\usepackage{amssymb}
 
 %\jvol{xx}
 %\jnum{xx}
@@ -260,9 +261,31 @@ have low weights (dissimilar examples) and the edges within a group have high we
 There are several ways of building these graphs:
 \begin{itemize}
     \item $\epsilon$-neighborhood graph: All examples whose pairwise distances are smaller than $\epsilon$
-    are connected.
-    \item $k$-nearest neighbor graph: Each example is connected with its nearest $k$ examples.
-    \item Fully connected graph: Simply connecting all examples with each other.
+    are connected. In practice it can be difficult to choose a useful value for $\epsilon$. Setting it too
+    low might fail to connect sparse clusters, whereas setting it too high might unnecessarily connect many
+    examples (different scales problem).
+    \item $k$-nearest neighbor graph: Each example is connected with its nearest $k$ examples. Recommended
+    by [Luxburg, 2007].
+    \item Fully connected graph: Simply connecting all examples with each other. Results in a dense matrix.
+\end{itemize}
+
+Graph Laplacian matrices are studied in Spectral graph theory. They encode graph adjacency information
+as well as information about degrees of vertices and have some interesting properties used in spectral
+clustering, e.g. the multiplicity of the eigenvalue 0 equals the number of connected components in the graph
+[Mohar, 1991, 1997].
+
+There are several variants of spectral clustering algorithms. We will describe only unnormalized version
+as presented in [Luxburg, 2007]. Given similarity matrix $S \in \mathbb{R}^{n \times n}$ and the number
+of clusters to construct $k$:
+
+\begin{itemize}
+    \item Construct a similarity graph.
+    \item Compute the unnormalized Laplacian L.
+    \item Compute the first $k$ eigenvectors $u_1, \dots, u_k$ of $L$ and combine them into
+    $U \in \mathbb{R}^{n \times k}$ as columns.
+    \item Cluster rows of $U$ ($y_i \in \mathbb{R}^k$ is the $i$-th row) with the k-means algorithm
+    into clusters $C_1, \dots, C_k$.
+    \item Output are clusters $A_1, \dots, A_k$, where $A_i = \{ j|y_j \in C_i \}$
 \end{itemize}
 
 Spectral clustering can be implemented efficiently even for large datasets, as long as
