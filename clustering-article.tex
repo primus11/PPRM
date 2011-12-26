@@ -244,8 +244,31 @@ J = \sum_{k=1}^K \sum_{i=1}^{N_{Ck}} dist(x_{ki}, C_{ck})
 \subsection{Spectral Clustering}
 Spectral clustering has become more popular in recent years. It uses standard linear algebra
 methods, it is relatively simple to implement and its results are often better than those of
-traditional clustering approaches (such as K-means). It is not obvious to see why it works at all
+traditional clustering approaches (such as K-means). In short, spectral clustering exploits the
+eigenvalues and eigenvectors (called spectrum of a matrix, hence the name) of the similarity matrix
+(which represents
+a measure of similarity between examples) of the data to perform dimensionality reduction for
+clustering in low-dimensional space. It is not obvious to see why it works at all
 and we will not dive into details in this article, but instead we will try to give a high level overview.
+An intuitive explanation from three different theoretic backgrounds is given by [Luxburg, 2007].
+
+Similarity graphs and graph Laplacians are the key tools in spectral clustering.
+Similarity graph is constructed from data by interpreting examples as vertices and similarities
+between examples as weighted edges between vertices. This enables reformulating the problem
+of clustering: we want to find a partition of the graph such that the edges between different groups
+have low weights (dissimilar examples) and the edges within a group have high weights (similar examples).
+There are several ways of building these graphs:
+\begin{itemize}
+    \item $\epsilon$-neighborhood graph: All examples whose pairwise distances are smaller than $\epsilon$
+    are connected.
+    \item $k$-nearest neighbor graph: Each example is connected with its nearest $k$ examples.
+    \item Fully connected graph: Simply connecting all examples with each other.
+\end{itemize}
+
+Spectral clustering can be implemented efficiently even for large datasets, as long as
+the similarity graph is sparse. Once the similarity graph is chosen, a linear problem needs to
+be solved. There are no issues of getting stuck in a local minima and there is no need to
+restart the algorithm several times with different initializations.
 
 \subsection{Information Theoretic Clustering}%Cauchy-Schwarz Divergence Clustering}
 KMC is an example of so-called \textit{parametric} methods of clustering. These
