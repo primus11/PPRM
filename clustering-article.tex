@@ -145,23 +145,32 @@ to produce spherical clusters with similar size, which can be undesirable.
 k-means is often used as a preprocessing step for other algorithms. The standard
 algorithm was first proposed by Stuart Lloyd in 1957 and published later in 1982.
 
-The number of clusters we want to find in data is fixed a priori ($k$).
-The algorithm iteratively refines clusters' centroids,
-until no more refinements are possible (centroids do not move anymore)
-or max number of iterations has been reached. $m_1^{(1)}$, $m_2^{(1)}$, ..., $m_k^{(1)}$
-denote centroids (also called means). The superscript index denotes the current iteration.
-$S_i^{(t)}$ is a cluster (set of examples) with the corresponding centroid $m_i^{(t)}$.
-There are two alternating steps in the algorithm:
+%The number of clusters we want to find in data is fixed a priori ($k$).
+KMC requires as input the number of cluster we want to find in data ($k$).
+The algorithm iteratively refines clusters' locations (guided by a cost function),
+until no more refinements are possible (clusters do not change anymore)
+or max number of iterations has been reached. It can be summarized as [Jain et al., 2000]:
 
-\begin{itemize}
-\item \textbf{Assignment step}\\
-  Each example is assigned to the cluster with the closest centroid:\\
-  $S_i^{(t)} = \{x_j : ||x_j - m_i^{(t)}|| \le ||x_j - m_l^{(t)}|| \forall l = 1, ..., k\}$
-\\
-\item \textbf{Update step}\\
-  New means are calculated and set as centroids:\\
-  $m_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \displaystyle\sum\limits_{x_j \in S_i^{(t)}}{x_j}$
-\end{itemize}
+\begin{enumerate}
+    \item Select an initial partition with k clusters.
+    \item Generate a new partition by assigning each example to its closest cluster center.
+    \item Compute new cluster centers as the centroids of the clusters.
+    \item Repeat step 2 and 3 until convergence.
+\end{enumerate}
+%$m_1^{(1)}$, $m_2^{(1)}$, ..., $m_k^{(1)}$
+%denote centroids (also called means). The superscript index denotes the current iteration.
+%$S_i^{(t)}$ is a cluster (set of examples) with the corresponding centroid $m_i^{(t)}$.
+%There are two alternating steps in the algorithm:
+
+%\begin{itemize}
+%\item \textbf{Assignment step}\\
+  %Each example is assigned to the cluster with the closest centroid:\\
+  %$S_i^{(t)} = \{x_j : ||x_j - m_i^{(t)}|| \le ||x_j - m_l^{(t)}|| \forall l = 1, ..., k\}$
+%\\
+%\item \textbf{Update step}\\
+  %New means are calculated and set as centroids:\\
+  %$m_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \displaystyle\sum\limits_{x_j \in S_i^{(t)}}{x_j}$
+%\end{itemize}
 
 There are two common ways to select the initial centroids: random seed and random partition.
 The random seed method randomly chooses k observations from the data set
