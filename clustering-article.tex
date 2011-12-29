@@ -102,18 +102,21 @@ constructs isotropic clusters) with spectral or other algorithms (which can find
 clusters).
 
 \subsection{Homogeneity, completeness and V-measure}
-Rosenberg and Hirschberg (2007) defined the following two desirable objectives of clustering:
-\begin{itemize}
-    \item \textbf{homogeneity}: each cluster contains only members of a single class and
-    \item \textbf{completeness}: all members of a given class are assigned to the same cluster.
-\end{itemize}
+Rosenberg and Hirschberg (2007) defined two desirable objectives of clustering: homogeneity and
+completeness. Homogeneity refers to a desire that each cluster should contain only members
+of a single class whereas completeness expresses the aspiration that all members of a given
+class are assigned to the same cluster.
+%\begin{itemize}
+%    \item \textbf{homogeneity}: each cluster contains only members of a single class and
+%    \item \textbf{completeness}: all members of a given class are assigned to the same cluster.
+%\end{itemize}
 We can translate these objectives to math in the following way:
 
-$h = 1 - \frac{H(C|K)}{H(C)}$
+$homogeneity = 1 - \frac{H(C|K)}{H(C)}$
 
-$c = 1 - \frac{H(K|C)}{H(K)}$
+$completeness = 1 - \frac{H(K|C)}{H(K)}$
 
-where $H(C|K)$ is the conditional entropy of the classes given the cluster assignments:
+where $H(C|K)$ is the conditional entropy of the classes given the cluster assignments defined as:
 
 $H(C|K) = - \sum\limits_{c=1}^{|C|}\sum\limits_{k=1}^{|K|}\frac{n_{c,k}}{n}\cdot \log{\frac{n_{c,k}}{n_k}}$
 
@@ -121,8 +124,8 @@ and $H(C)$ is the entropy of the classes:
 
 $H(C) = - \sum\limits_{c=1}^{|C|}\frac{n_c}{n} \cdot \log{\frac{n_c}{n}}$
 
-with $n$ the total number of samples, $n_c$ and $n_k$ the number of samples belonging to class
-$c$ and cluster $k$ respectively, and with $n_{c,k}$ the number of samples from class $c$ assigned
+with $n$ the total number of examples, $n_c$ and $n_k$ the number of examples belonging to class
+$c$ and cluster $k$ respectively, and with $n_{c,k}$ the number of examples from class $c$ assigned
 to cluster $k$.
 
 The conditional entropy of clusters given class $H(K|C)$ and the entropy of clusters $H(K)$ are
