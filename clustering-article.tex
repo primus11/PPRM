@@ -250,7 +250,7 @@ eigenvalues and eigenvectors (called spectrum of a matrix, hence the name) of th
 (which represents
 a measure of similarity between examples) of the data to perform dimensionality reduction for
 clustering in low-dimensional space. It is not obvious to see why it works at all
-and we will not dive into details in this article, but instead we will try to give a high level overview.
+and we will not dive into details in this article, instead we will try to give a high level overview.
 An intuitive explanation from three different theoretic backgrounds is given by [Luxburg, 2007].
 
 Similarity graphs and graph Laplacians are the key tools in spectral clustering.
@@ -283,15 +283,23 @@ of clusters to construct $k$:
     \item Compute the unnormalized Laplacian L.
     \item Compute the first $k$ eigenvectors $u_1, \dots, u_k$ of $L$ and combine them into
     $U \in \mathbb{R}^{n \times k}$ as columns.
-    \item Cluster rows of $U$ ($y_i \in \mathbb{R}^k$ is the $i$-th row) with the k-means algorithm
+    \item Cluster rows of $U$ ($y_i \in \mathbb{R}^k$ is the $i$-th row) with the K-means algorithm
     into clusters $C_1, \dots, C_k$.
     \item Output are clusters $A_1, \dots, A_k$, where $A_i = \{ j|y_j \in C_i \}$
 \end{itemize}
 
+The main trick of this algorithm is to change the representation of the examples to $y_i \in \mathbb{R}^k$.
+In this new representation clusters can be easily detected, even by a simple algorithm such as K-means.
+
+Spectral clustering is being given a lot of attention mainly because it does not make strong
+assumptions on the form of the clusters. Unlike many other clustering algorithms it
+can solve very general problems like intertwined spirals.
 Spectral clustering can be implemented efficiently even for large datasets, as long as
 the similarity graph is sparse. Once the similarity graph is chosen, a linear problem needs to
 be solved. There are no issues of getting stuck in a local minima and there is no need to
-restart the algorithm several times with different initializations.
+restart the algorithm several times with different initializations. However, choosing
+a good similarity graph is not trivial, and spectral clustering can
+be quite unstable under different choices of the parameters for the neighborhood graphs.
 
 \subsection{Information Theoretic Clustering}%Cauchy-Schwarz Divergence Clustering}
 KMC is an example of so-called \textit{parametric} methods of clustering. These
