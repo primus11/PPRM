@@ -338,7 +338,7 @@ This divergence can be regarded as an approximation of Kullback-Leibler divergen
 An intuitive reasoning behind this measure is that in order to optimize $D_{CS}$, the entropy of each individual cluster must
 be small, while at the same time the entropy across the clusters must be large.
 Probability densition functions can be estimated by a sample-based estimator. [Jenssen, 2010] used a kernel
-density estimator developed by [Parzen, 1962] (Parzen-Rosenblatt window method). This introduces a problem of
+density estimator developed by [Parzen, 1962] (Parzen-Rosenblatt window technique). This introduces a problem of
 choosing the kernel size (this is a problem of all kernel-based methods).
 
 An early idea to maximize the Cauchy-Schwarz pdf divergence was to seed a number
@@ -352,6 +352,13 @@ This resulted in an efficient gradient descent-based clustering algorithm which 
 as an optimization strategy. The kernel size may start large during the initial iterations, but then annealed (reduced)
 in following iterations. The annealing procedure can also help the algorithm to cope with different data scales,
 by discovering large scale structures first, followed by fine tuning as the kernel size is decreased.
+
+The main advantage of these clustering approaches is that the underlying clustering metric is
+based on entropy. Entropy conveys information about the shape of probability distribution,
+and not only variance (which e.g. K-means rely on). This enables the clustering of data sets consisting of
+elongated and highly irregular clusters.
+
+% TODO: connection with graph-theoretic approaches
 
 \section{Results}
 
