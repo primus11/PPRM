@@ -272,6 +272,8 @@ There are several ways of building these graphs:
     \item Fully connected graph: Simply connecting all examples with each other. Results in a dense matrix.
 \end{itemize}
 
+% TODO: connection with graph cut!
+
 Graph Laplacian matrices are studied in Spectral graph theory. They encode graph adjacency information
 as well as information about degrees of vertices and have some interesting properties used in spectral
 clustering, e.g. the multiplicity of the eigenvalue 0 equals the number of connected components in the graph
@@ -280,6 +282,8 @@ clustering, e.g. the multiplicity of the eigenvalue 0 equals the number of conne
 There are several variants of spectral clustering algorithms. We will describe only unnormalized version
 as presented in [Luxburg, 2007]. Given similarity matrix $S \in \mathbb{R}^{n \times n}$ and the number
 of clusters to construct $k$:
+
+% TODO: refer to authors of different variants
 
 \begin{itemize}
     \item Construct a similarity graph.
@@ -305,15 +309,23 @@ a good similarity graph is not trivial, and spectral clustering can
 be quite unstable under different choices of the parameters for the neighborhood graphs.
 
 \subsection{Information Theoretic Clustering}%Cauchy-Schwarz Divergence Clustering}
-KMC is an example of so-called \textit{parametric} methods of clustering. These
+KMC and similar are examples of so-called \textit{parametric} methods of clustering. These
 methods assume some knowledge about clusters' structure, which makes them less
 suitable for many use cases. KMC performs badly when clusters are not hyperelliptical
 because it implicitly assumes Gaussian cluster distributions. In fact, any clustering method
-that utilizes second order data statistics can produce only convex clusters (Jain et al., 2000).
+that utilizes second order data statistics can produce only convex clusters [Jain et al., 2000].
 
 Information theory has been successfully used in clustering by several researchers in recent years.
 Various information-theoretic clustering metrics, such as entropy, mutual information and
 Kullback-Leibler divergence were researched.
+
+[Faivishevsky \& Goldberg, 2010] suggested an algorithm based on maximizing the mutual information
+between examples and clusters. Their method does not impose any parametric model on the cluster
+distribution because they used a non-parametric estimation of the average cluster entropies (MeanNN,
+by the same researchers, 2009). Their algorithm starts with random partitioning and continues
+with reassigning examples between clusters, trying to improve the cost function they developed,
+until improvements become sufficiently small. Algorithm's overall computational complexity is
+$O(n^2)$, but it is able to cluster non-convex data sets.
 
 \section{Results}
 
