@@ -9,3 +9,6 @@ python spectral.py ../datasets/circle-weird.tab 3
 
 echo "Running kmeans clustering on circle-weird.tab..."
 python kmeans.py ../datasets/circle-weird.tab 2
+
+echo "Running DBSCAN on half-moons.tab..."
+python DBSCAN-comparison.py ../datasets/half-moons.tab 0.05 7
