@@ -327,6 +327,32 @@ with reassigning examples between clusters, trying to improve the cost function 
 until improvements become sufficiently small. Algorithm's overall computational complexity is
 $O(n^2)$, but it is able to cluster non-convex data sets.
 
+Another group of algorithms was developed by [Jenssen et. al, 2005, 2010]. They combined
+the Renyi entropy [Renyi, 1976], which is an information theoretic measure of uncertainty of a random variable,
+and the well known Cauchy-Schwarz inequality, forming Cauchy-Schwarz pdf (probability density function)
+divergence measure (statistical distance). The measure between two cluster pdf's $p(x)$ and $q(x)$ is defined as:
+
+$D_{CS}(p, q) = -\log \frac{\int p(x)q(x)dx}{\sqrt{\int p^2(x)dx \int q^2(x)dx}}$
+
+This divergence can be regarded as an approximation of Kullback-Leibler divergence between two pdf's [Jenssen, 2009].
+An intuitive reasoning behind this measure is that in order to optimize $D_{CS}$, the entropy of each individual cluster must
+be small, while at the same time the entropy across the clusters must be large.
+Probability densition functions can be estimated by a sample-based estimator. [Jenssen, 2010] used a kernel
+density estimator developed by [Parzen, 1962] (Parzen-Rosenblatt window method). This introduces a problem of
+choosing the kernel size (this is a problem of all kernel-based methods).
+
+An early idea to maximize the Cauchy-Schwarz pdf divergence was to seed a number
+of small initial clusters in the data set, grow clusters (assigning examples to clusters
+in a way that maximizes the divergence) until all examples have been clustered, and then
+reassign the members of the worst cluster (decided again by the divergence), reducing the number of clusters. 
+The reassigning step is repeated until the desired number of clusters is reached.
+
+[Jenssen et at., 2007] derived an optimization procedure based on the technique of Lagrange multipliers.
+This resulted in an efficient gradient descent-based clustering algorithm which incorporated kernel annealing
+as an optimization strategy. The kernel size may start large during the initial iterations, but then annealed (reduced)
+in following iterations. The annealing procedure can also help the algorithm to cope with different data scales,
+by discovering large scale structures first, followed by fine tuning as the kernel size is decreased.
+
 \section{Results}
 
 \section{Conclusions}
