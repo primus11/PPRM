@@ -245,6 +245,20 @@ J = \sum_{k=1}^K \sum_{i=1}^{N_{Ck}} dist(x_{ki}, C_{ck})
 
 \subsection{Expectation Maximization Gaussian Mixture Model}
 
+\subsection{Density-based clustering}
+This is a group of algorithms which define clusters as areas of higher density than the rest
+of the dataset. Examples in sparse areas in between clusters are considered noise. The notion
+of noise actually particulary sets these algorithms apart from others.
+
+The best known density-based clustering method is DBSCAN, proposed by [Ester et al., 1996].
+DBSCAN searches neighborhoods (according to some distance measure) of examples,
+counting the neighbors (to some distance). If a
+particular neighborhood contains sufficiently many examples, the entire neighborhood is
+designated to belong to a new cluster. The algorithm then searches the neighborhoods of examples
+in this new cluster, expanding it until it is completely found.
+This process is repeated until no new clusters can be started.
+
+
 \subsection{Spectral Clustering}
 Spectral clustering has become more popular in recent years. It uses standard linear algebra
 methods, it is relatively simple to implement and its results are often better than those of
