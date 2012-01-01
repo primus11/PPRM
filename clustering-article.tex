@@ -201,6 +201,8 @@ even in 2 dimensions, on which k-means takes exponential time to converge.
 These datasets do not seem to arise in practice: this is supported by the
 fact that the smoothed time complexity of k-means is polynomial.
 
+% TODO: k-medoids
+
 \subsection{Evolving Clustering Method}
 
 ECM (Evolving Clustering Method) is dynamic clustering method mostly used for on-line system with fast "one-pass" algorithm. It's extension ECMc (Evolving Clustering Method with Constrained minimization) is used for off-line where constrained optimisation is applied. Both ECM and it's extension were introduced in 2001 by Qun Song and Nikola Kasabov.
@@ -264,16 +266,36 @@ if $O(n\log n)$. Advantages include the ability to find arbitrality shaped clust
 non-linearly separable ones, which cannot be clustered with e.g. K-means); it has a notion of
 noise and does not require the specification of the number of cluster in advance (since it
 discovers clusters naturally by itself). However, it has difficulties handling data containing
-clusters of different densities. It also fails on overlapping clusters such as those in mixtures of Gaussians
-(where EM clustering is superior).
+clusters of different densities and is very sensitive to input parameters (e.g. setting
+the neighborhood search distance too low might result in classifying examples as noise
+rather than aggregating them into a cluster). It also fails on overlapping clusters such as
+those in mixtures of Gaussians (where EM clustering is superior).
 
-Hierarchical clustering algorithm Chameleon [Karypis, 1999], builds a list of the nearest
+Hierarchical clustering algorithm Chameleon [Karypis, 1999] builds a list of the nearest
 neighbors of each example, constructs a weighted similarity graph (described in Spectral clustering)
 using this nearest neighbor list, and then partitions the graph to obtain cluster fragments
 which are finally merged into clusters. It is similar to DBSCAN in that it finds a small subsets
 of examples and builds clusters around them. Chameleon can handle clusters of varying density,
-partly because of its nearest neighbor approach, which tends to work better than distance measure,
-specially in high dimensional datasets.
+partly because of its nearest neighbor approach, which tends to work better than distance measures,
+especially in high dimensional datasets.
+
+Another hierarchical algorithm CURE [Guha, 1998] represents each cluster by a certain
+number of examples selected from the cluster and translated toward the mean of the cluster
+by a specified amount (this helps with outliers). The algorithm merges clusters with
+the closest pair of representative examples at each step. Using more than one representative
+example per cluster allows CURE to adjust to non-spherical shapes of the clusters.
+CURE also has problems with clusters of different densities [Ertoz, ONCE]. Its running
+time is $O(n^2)$ but the authors of the algorithm used several enhancements such as
+random sampling and partitioning to make it more practical.
+
+The SNN algorithm [Ertoz, 2003] differs from DBSCAN mainly in that it defines the similarity
+between two examples in terms of how many nearest neighbors the two examples share.
+Using this new definition of similarity, it eliminates noise and problems with varying density.
+It also has the concept of representative examples which handles problems with shape
+and size of clusters. The run-time complexity is $O(n^2)$ since the algorithm constructs
+the similarity matrix (can be reduced to $O(n \log n)$ for low dimensional data by using a spatial
+indexing structure, such as kd-tree).
+
 
 \subsection{Spectral Clustering}
 Spectral clustering has become more popular in recent years. It uses standard linear algebra
