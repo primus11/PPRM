@@ -263,11 +263,17 @@ indexing structure is used to provide logarithmic queries, then the overall time
 if $O(n\log n)$. Advantages include the ability to find arbitrality shaped clusters (even
 non-linearly separable ones, which cannot be clustered with e.g. K-means); it has a notion of
 noise and does not require the specification of the number of cluster in advance (since it
-discovers cluster naturally by itself). However, it has difficulties handling data containing
+discovers clusters naturally by itself). However, it has difficulties handling data containing
 clusters of different densities. It also fails on overlapping clusters such as those in mixtures of Gaussians
 (where EM clustering is superior).
 
-
+Hierarchical clustering algorithm Chameleon [Karypis, 1999], builds a list of the nearest
+neighbors of each example, constructs a weighted similarity graph (described in Spectral clustering)
+using this nearest neighbor list, and then partitions the graph to obtain cluster fragments
+which are finally merged into clusters. It is similar to DBSCAN in that it finds a small subsets
+of examples and builds clusters around them. Chameleon can handle clusters of varying density,
+partly because of its nearest neighbor approach, which tends to work better than distance measure,
+specially in high dimensional datasets.
 
 \subsection{Spectral Clustering}
 Spectral clustering has become more popular in recent years. It uses standard linear algebra
