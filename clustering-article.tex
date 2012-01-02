@@ -75,6 +75,14 @@ world-wide-web search and mining and bioinformatics.
     \draw [-] (h) -- (m);
 \end{tikzpicture}
 
+\subsection{Determining the number of clusters in a data set}
+A major problem in clustering is the fact that many clustering algorithms require the
+number of clusters to find in a dataset as input (this quantity is usually denoted $k$).
+Several algorithms such as those based on density do not require the specification of this
+parameter and hierarchical clustering algorithms essentially output clusterings 
+for all possible values of this parameter (somewhat avoiding the problem).
+
+
 \section{Clustering performance evaluation}
 TODO: external/internal evaluation
 
@@ -291,11 +299,12 @@ random sampling and partitioning to make it more practical.
 The SNN algorithm [Ertoz, 2003] differs from DBSCAN mainly in that it defines the similarity
 between two examples in terms of how many nearest neighbors the two examples share.
 Using this new definition of similarity, it eliminates noise and problems with varying density.
-It also has the concept of representative examples which handles problems with shape
+It also uses the concept of representative examples which handles problems with shape
 and size of clusters. The run-time complexity is $O(n^2)$ since the algorithm constructs
 the similarity matrix (can be reduced to $O(n \log n)$ for low dimensional data by using a spatial
 indexing structure, such as kd-tree).
 
+% TODO: OPTICS maybe?
 
 \subsection{Spectral Clustering}
 Spectral clustering has become more popular in recent years. It uses standard linear algebra
