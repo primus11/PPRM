@@ -5,6 +5,9 @@
 \usepackage{tikz}
 \usepackage{amssymb}
 
+\usepackage[section] {placeins}
+\graphicspath{{datasets/}{src//images//}}
+
 %\jvol{xx}
 %\jnum{xx}
 %\jmonth{November}
@@ -17,7 +20,10 @@
 \maketitle
 
 \begin{abstract}
-Abstract is missing!
+Have you ever wondered how is it possible that there is advertisement on a web page you
+are intersted in? Or how You-tube is offering you videos you are likely searching for? 
+One of the techiques used is clustering. In this paper few of most known
+algorithms are researched and compared to each other.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -213,18 +219,29 @@ fact that the smoothed time complexity of k-means is polynomial.
 
 \subsection{Evolving Clustering Method}
 
-ECM (Evolving Clustering Method) is dynamic clustering method mostly used for on-line system with fast "one-pass" algorithm. It's extension ECMc (Evolving Clustering Method with Constrained minimization) is used for off-line where constrained optimisation is applied. Both ECM and it's extension were introduced in 2001 by Qun Song and Nikola Kasabov.
+ECM (Evolving Clustering Method) is dynamic clustering method mostly used for on-line system with fast "one-pass" algorithm.
+It's extension ECMc (Evolving Clustering Method with Constrained minimization) is used for off-line where constrained optimisation
+is applied. Both ECM and it's extension were introduced in 2001 by Qun Song and Nikola Kasabov.
 
-ECM is a distance based clustering method where each cluster has a centre, where all of cluster's members are less distant from the centre than $D_{thr}$. $D_{thr}$ is by default input in algorithm, unlike to some others where number of cluster is input. However, $D_{thr}$ does affect number of clusters but not directly. Therefore, when comparing ECM algorithm to others you have to be aware of their inputs.
+ECM is a distance based clustering method where each cluster has a centre, where all of cluster's members are less distant
+from the centre than $D_{thr}$. $D_{thr}$ is by default input in algorithm, unlike to some others where number of cluster is
+input. However, $D_{thr}$ does affect number of clusters but not directly. Therefore, when comparing ECM algorithm to
+others you have to be aware of their inputs.
 
-ECM takes samples from a data stream and with every new data cluster's radius can be updated or it's center changed or new cluster can be created. At some point, usually when cluster radius reaches threshold value $D_{thr}$, cluster radius will not update anymore.
+ECM takes samples from a data stream and with every new data cluster's radius can be updated or it's center changed or
+new cluster can be created. At some point, usually when cluster radius reaches threshold value $D_{thr}$, cluster radius
+will not update anymore.
 
-Both ECM and ECMc consist of several steps where ECM is a pre-process to ECMc. First sample is used to create first cluster with radius 0 and centre on the sample itself. For every new sample $x_i$ next steps are taken:
+Both ECM and ECMc consist of several steps where ECM is a pre-process to ECMc. First sample is used to create first cluster
+with radius 0 and centre on the sample itself. For every new sample $x_i$ next steps are taken:
 \begin{enumerate}
-\item Distance from $x_i$ to every cluster centre is calculated as shown in equation \ref{ECMdist}.
-\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
-\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster is created and algorithm continues at step 1.
-\item Cluster's centre, with minumum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and centre's position is on the line from old centre to sample $x_i$ so that distance from new centre to point $x_i$ is equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
+	\item Distance from $x_i$ to every cluster centre is calculated as shown in equation \ref{ECMdist}.
+	\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
+	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster
+		is created and algorithm continues at step 1.
+	\item Cluster's centre, with minumum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
+		centre's position is on the line from old centre to sample $x_i$ so that distance from new centre to point $x_i$ is
+		equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
 \end{enumerate}
 
 \begin{equation}\label{ECMdist}
@@ -244,16 +261,88 @@ Cc^d = Cc^d + (f * (x_i^d - C_c^d))
 
 This way it holds for each sample in its own cluster that the distance between centre and sample is less than or equal to $D_{thr}$. Afterwards constrained optimisation can be applied to minimize the function \ref{ECMJ}. For optimisation the following steps have to be taken:
 \begin{enumerate}
-\item 1. Change the membership of each sample in data to cluster that has the smallest distance to it's centre
-\item 2. Calculate new cluster centre to fit new changes
-\item 3. The end of algorithm is reached if enough iterations occured or the change of function \ref{ECMJ} is less than certain amount. Otherwise continue with going back to step 1.
+	\item Change the membership of each sample in data to cluster that has the smallest distance to it's centre
+	\item Calculate new cluster centre to fit new changes
+	\item The end of algorithm is reached if enough iterations occured or the change of function \ref{ECMJ} is less than certain amount.
+		Otherwise continue with going back to step 1.
 \end{enumerate}
 
 \begin{equation}\label{ECMJ}
-J = \sum_{k=1}^K \sum_{i=1}^{N_{Ck}} dist(x_{ki}, C_{ck})
+	J = \sum_{k=1}^K \sum_{i=1}^{N_{Ck}} dist(x_{ki}, C_{ck})
 \end{equation}
 
+
 \subsection{Expectation Maximization Gaussian Mixture Model}
+
+Gaussian Mixture Models are among the most statistically mature methods for clustering. But unlike K-Means,
+GMMs are able to build soft clustering boundaries, i.e., points in space can belone to any class with a giver probability.
+
+For statistical models Gaussian distribution is mostly used, in which parameters are the mean vector $\mu$ and a
+variance-covariance matrix $\sum$. It's probability density function is shown in equation \ref{equgauss}.
+
+\begin{equation}\label{equgauss}
+	N(x|\mu,\sum) = \frac{1}{\sqrt{(2\pi)^D * |\sum|}} * exp^{-\frac{(x-\mu)^T*\sum^{-1}*(x-\mu)}{2}}
+\end{equation}
+
+As one distribution mostly cannot accurately model all the data we use mixture of distributions which are convex
+combinations of more probablility distributions. So mixture distributions have an array of component distributions
+($\mu$,$\sum$) and a coefficient array ($\pi_k$), which contains the weight of each component probablility distributions
+as shown in equation \ref{equmixdist}.
+
+\begin{equation}\label{equmixdist}
+	p(x) = \sum_{k=1}^K {\pi_k*N(x|\mu_k, {\sum}_k)}
+\end{equation}
+
+Three parameters $\pi$, $\mu$ and $\sum$ have to be defined to suit the maximum likelihood as in the equation \ref{equmaxlike}
+and \ref{equmaxlike2}.
+
+\begin{equation}\label{equmaxlike}
+	MLE=\arg\max_\theta {p(P|o)} = \arg\max_\theta {p({x1,x2,...,xn}|\pi,\mu,\sum)}
+\end{equation}
+\begin{equation}\label{equmaxlike}
+	MLE = \arg\max_\theta {\prod_{i=1}^N p(x_i|\pi,\mu,\sum)}
+\end{equation}
+
+The problem can be simplified by taking the log of the function that gives us the huge advantage of converting the
+product into a sum as shown in equation \ref{equmaxlikelog}.
+
+\begin{equation}\label{equmaxlikelog}
+	MLE=\arg\max_\theta {\sum_{i=1}^N log(p(x_i))}
+\end{equation}
+
+Taking the derivative of the likelihood function with respect to $\mu$ and setting the result to 0, $\mu$ can be found as
+shown in equation \ref{equfindmi}, \ref{equrik}. Similar, if we take derivative with respect to $sum_k^-1$ and set
+result to 0 we get $sum_k$ shown in equation \ref{equsumk}. For $pi_k$ we take derivative of $pi_k$ and get equation
+shown in \ref{equpik}.
+
+\begin{equation}\label{equfindmi}
+	\mu_k = \frac {\sum_{i=1}^N r_{ik}*x_i} {\sum_{i=1}^N r_{ik}}
+\end{equation}
+\begin{equation}\label{equrik}
+	r_{ik} = \frac {\pi_k*N(x_i|\mu_k,{\sum}_k)} {\sum_{j=1}^K \pi_j*N(x_i|\mu_j,{\sum}_j)}
+\end{equation}
+\begin{equation}\label{equsumk}
+	 {\sum}_k = \frac {\sum_{i=1}^N r_{ik}*(x_i-\mu_k)*(x_i-\mu_k)^T} {\sum_{i=1}^N r_{ik}}
+\end{equation}
+\begin{equation}\label{equpik}
+	\pi_k=\frac {\sum_{i=1}^N r_{ik}} {N}
+\end{equation}
+
+We also introduce hidden variables $s_i$ that define if a sample belongs to certain group.
+
+Using Expectation Maximization we numerically find the solution. Algorithm got it's name based on two steps E and M,
+which are essential. In step E we calculate values of hidden variables $s_i$ and in step M we correct parameters based
+on value of hidden attributes. Steps to follow:
+
+\begin{enumerate}
+	\item All parameters, means, convariances and mixing coefficients, have to be set and initial value of log-likelihood
+		function has to be evaluated.
+	\item Values of $r_ik$ should be calculated based on set parameters.
+	\item New values of means, covariances and mixing coeficients should be evaluated with $r_{ik}$ in step 2.
+	\item Log-likelihood function should be calculated again and checked for convergence. If threshold convergence
+		is not reached we continue at step 2.
+\end{enumerate}
+
 
 \subsection{Density-based clustering}
 This is a group of algorithms which define clusters as areas of higher density than the rest
@@ -423,10 +512,224 @@ elongated and highly irregular clusters.
 
 \section{Results}
 
+\subsection{Datasets}
+
+For each algorithm comparison on three different datasets was done. First dataset shown in picture \ref{dataset1}
+represent two clusters that are linear separable. Second one, shown in picture \ref{dataset2},is not linear separable
+and that makes it difficult for some algorithms to cluster it correctly. In this second example one
+whole cluster is inside another cluster. Next dataset's shape reminds on two half-moons that are hardly seperable.
+We can see it on figure \ref{dataset3}.
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{red-blue.png}
+\caption{Dataset named ''red-blue''.}
+\label{dataset1}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{circle-weird.png}
+\caption{Dataset named ''circle-weird''.}
+\label{dataset2}
+\end{figure}
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=15pc]{half-moons.png}
+\caption{Dataset named ''half-moons''.}
+\label{dataset3}
+\end{figure}
+
+\FloatBarrier
+
+
+\subsection{Red-Blue}
+
+As this was a simple problem all algorithms proved to be successful as we can see in table \ref{redblueresults}. In this
+dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as well.
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{ECMC_red-blue-clusters.pdf}
+\caption{ECMC on red-blue.}
+\label{ECMC_redblue}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{GMM_red-blue-clusters.pdf}
+\caption{GMM on red-blue.}
+\label{GMM_redblue}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{spectral_red-blue-cluster.pdf}
+\caption{Spectral clustering on red-blue.}
+\label{spectral_redblue}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{kmeans_red-blue-clusters.pdf}
+\caption{K-means clustering on red-blue.}
+\label{kmeans_redblue}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{DBSCAN_red-blue-clusters.pdf}
+\caption{DBSCAN on red-blue.}
+\label{DBSCAN_redblue}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Results for red-blue-clusters.}
+\label{redblueresults}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ |c|c|c|c|c| }
+\hline
+	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
+	ECMC & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
+	GMM & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
+	Spectral & 0.99788 & 0.98931 & 1.00000 & 0.99463 \\ \hline
+	k-means & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
+	DBSCAN & 0.99592 & 0.98094 & 1.00000 & 0.99038 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\subsection{Weird circle}
+This dataset as described is more difficult to be clustered and the outcome are bad results for most of
+the algorithms. As we can see in table \ref{circleweirdresults} the only algorithm that managed
+to get good result is DBSCAN.
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{ECMC_circle-weird.pdf}
+\caption{ECMC on circle-weird.}
+\label{ECMC_circleweird}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{GMM_circle-weird.pdf}
+\caption{GMM on circle-weird.}
+\label{GMM_circleweird}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{spectral_circle-weird.pdf}
+\caption{Spectral clustering on circle-weird.}
+\label{spectral_circleweird}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{kmeans_circle-weird.pdf}
+\caption{K-means clustering on circle-weird.}
+\label{kmeans_circleweird}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{DBSCAN_circle-weird.pdf}
+\caption{DBSCAN on circle-weird.}
+\label{DBSCAN_circleweird}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Results for circle-weird.}
+\label{circleweirdresults}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ |c|c|c|c|c| }
+\hline
+	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
+	ECMC & 0.01379 & 0.01036 & 0.01954 & 0.01354 \\ \hline
+	GMM & 0.05346 & 0.13233 & 0.15379 & 0.14225 \\ \hline
+	Spectral & 0.00208 & 0.03068 & 0.03616 & 0.03319 \\ \hline
+	k-means & 0.01279 & 0.01194 & 0.01427 & 0.01300 \\ \hline
+	DBSCAN & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\subsection{Half-moons}
+
+This dataset showed also as difficult, however algorithms still did better here as in ''wierd circle'' dataset. Again
+the best one was DBSCAN as we can see in table \ref{halfmoonsresults}. 
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{ECMC_half-moons.pdf}
+\caption{ECMC on half-moons.}
+\label{ECMC_halfmoons}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{GMM_half-moons.pdf}
+\caption{GMM on half-moons.}
+\label{GMM_halfmoons}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{spectral_half-moons.pdf}
+\caption{Spectral clustering on half-moons.}
+\label{spectral_halfmoons}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{kmeans_half-moons.pdf}
+\caption{K-means clustering on half-moons.}
+\label{kmeans_halfmoons}
+\end{figure}
+
+\begin{figure}[th]
+\centering
+\includegraphics[width=15pc]{DBSCAN_half-moons.pdf}
+\caption{DBSCAN on half-moons.}
+\label{DBSCAN_halfmoons}
+\end{figure}
+
+\begin{table}[htbp]
+\caption{Results for half-moons.}
+\label{halfmoonsresults}
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{ |c|c|c|c|c| }
+\hline
+	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
+	ECMC & 0.29909 & 0.29051 & 0.68171 & 0.40740 \\ \hline
+	GMM & 0.30679 & 0.22706 & 0.22423 & 0.22564 \\ \hline
+	Spectral & 0.25881 & 0.20176 & 0.20679 & 0.20424 \\ \hline
+	k-means & 0.34345 & 0.26837 & 0.27267 & 0.27050 \\ \hline
+	DBSCAN & 0.96672 & 0.88976 & 0.97174 & 0.92894 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
 \section{Conclusions}
 
+As we can see results show us that DBSCAN is one of the best algorithm. The only place others
+could beat it was with the simpliest datasets where it's advantage of detecting noise really showed
+as disadvantage.
+
+Even though DBSCAN showed as the best algorithm overall every task of clustering should be
+considered as a problem of it's own. Research should be done which of algorithms
+really fits it best.
+
 \section*{Acknowledgements}
-Thanks to TODO.
+The authors wish to thank the mentor for all his help and suggestions.
 
 \section*{References}
 

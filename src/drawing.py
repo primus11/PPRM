@@ -1,5 +1,5 @@
-showImages = 1
-saveImages = 0
+showImages = 0
+saveImages = 1
 imgFilename = 'default'
 savedImages = {}
 imageTitle = ''
@@ -14,7 +14,7 @@ def setImgTitle(title):
 	imageTitle = title
 	
 	title.replace
-	title = title.replace(' ', '')[:14] #taking only first seven characters...
+	title = title.replace(' ', '')[:25] #taking only first x characters...
 	if not savedImages.has_key(title):
 		imgFilename = title
 		savedImages[title] = 0

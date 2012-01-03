@@ -11,3 +11,14 @@ def parse_tab(file_name):
 def data_to_na(data):
     """Cuts class information, maps values to floats. Returns 2D numpy array."""
     return numpy.array([map(float, example[:-1]) for example in data])
+
+def addLineToFile(filename, line):
+	f = open(filename, 'a')
+	f.write(line)
+	f.close()
+	
+def getTexTabLine(algorithm, ARI, homogeneity, completeness, vmeasure):
+	return '{0} & {1:.5f} & {2:.5f} & {3:.5f} & {4:.5f} \\\\ \\hline\n'.format(algorithm, ARI, homogeneity, completeness, vmeasure)
+	
+def addToResult(algorithm, ARI, homogeneity, completeness, vmeasure):
+	addLineToFile('result', getTexTabLine(algorithm, ARI, homogeneity, completeness, vmeasure))
