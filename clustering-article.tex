@@ -311,8 +311,8 @@ product into a sum as shown in equation \ref{equmaxlikelog}.
 \end{equation}
 
 Taking the derivative of the likelihood function with respect to $\mu$ and setting the result to 0, $\mu$ can be found as
-shown in equation \ref{equfindmi}, \ref{equrik}. Similar, if we take derivative with respect to $sum_k^-1$ and set
-result to 0 we get $sum_k$ shown in equation \ref{equsumk}. For $pi_k$ we take derivative of $pi_k$ and get equation
+shown in equation \ref{equfindmi}, \ref{equrik}. Similar, if we take derivative with respect to $\sum_k^{-1}$ and set
+result to 0 we get $\sum_k$ shown in equation \ref{equsumk}. For $\pi_k$ we take derivative of $\pi_k$ and get equation
 shown in \ref{equpik}.
 
 \begin{equation}\label{equfindmi}
@@ -579,7 +579,7 @@ dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as we
 
 \begin{figure}[th]
 \centering
-\includegraphics[width=15pc]{DBSCAN_red-blue-clusters.pdf}
+\includegraphics[width=15pc]{dbscan_red-blue-clusters.pdf}
 \caption{DBSCAN on red-blue.}
 \label{DBSCAN_redblue}
 \end{figure}
@@ -592,11 +592,12 @@ dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as we
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
 	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
-	ECMC & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
-	GMM & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
-	Spectral & 0.99788 & 0.98931 & 1.00000 & 0.99463 \\ \hline
-	k-means & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
-	DBSCAN & 0.99592 & 0.98094 & 1.00000 & 0.99038 \\ \hline
+	
+	ECMC & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
+	GMM & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
+	Spectral & 0.998 & 0.989 & 1.000 & 0.995 \\ \hline
+	k-means & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
+	DBSCAN & 0.996 & 0.981 & 1.000 & 0.990 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -637,7 +638,7 @@ to get good result is DBSCAN.
 
 \begin{figure}[th]
 \centering
-\includegraphics[width=15pc]{DBSCAN_circle-weird.pdf}
+\includegraphics[width=15pc]{dbscan_circle-weird.pdf}
 \caption{DBSCAN on circle-weird.}
 \label{DBSCAN_circleweird}
 \end{figure}
@@ -650,11 +651,12 @@ to get good result is DBSCAN.
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
 	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
-	ECMC & 0.01379 & 0.01036 & 0.01954 & 0.01354 \\ \hline
-	GMM & 0.05346 & 0.13233 & 0.15379 & 0.14225 \\ \hline
-	Spectral & 0.00208 & 0.03068 & 0.03616 & 0.03319 \\ \hline
-	k-means & 0.01279 & 0.01194 & 0.01427 & 0.01300 \\ \hline
-	DBSCAN & 1.00000 & 1.00000 & 1.00000 & 1.00000 \\ \hline
+	
+	ECMC & 0.014 & 0.010 & 0.020 & 0.014 \\ \hline
+	GMM & 0.053 & 0.132 & 0.154 & 0.142 \\ \hline
+	Spectral & 0.002 & 0.031 & 0.036 & 0.033 \\ \hline
+	k-means & 0.013 & 0.012 & 0.014 & 0.013 \\ \hline
+	DBSCAN & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -695,7 +697,7 @@ the best one was DBSCAN as we can see in table \ref{halfmoonsresults}.
 
 \begin{figure}[th]
 \centering
-\includegraphics[width=15pc]{DBSCAN_half-moons.pdf}
+\includegraphics[width=15pc]{dbscan_half-moons.pdf}
 \caption{DBSCAN on half-moons.}
 \label{DBSCAN_halfmoons}
 \end{figure}
@@ -708,11 +710,12 @@ the best one was DBSCAN as we can see in table \ref{halfmoonsresults}.
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
 	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
-	ECMC & 0.29909 & 0.29051 & 0.68171 & 0.40740 \\ \hline
-	GMM & 0.30679 & 0.22706 & 0.22423 & 0.22564 \\ \hline
-	Spectral & 0.25881 & 0.20176 & 0.20679 & 0.20424 \\ \hline
-	k-means & 0.34345 & 0.26837 & 0.27267 & 0.27050 \\ \hline
-	DBSCAN & 0.96672 & 0.88976 & 0.97174 & 0.92894 \\ \hline
+	
+	ECMC & 0.299 & 0.291 & 0.682 & 0.407 \\ \hline
+	GMM & 0.325 & 0.243 & 0.239 & 0.241 \\ \hline
+	Spectral & 0.259 & 0.202 & 0.207 & 0.204 \\ \hline
+	k-means & 0.343 & 0.268 & 0.273 & 0.271 \\ \hline
+	DBSCAN & 0.970 & 0.896 & 0.978 & 0.935 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}

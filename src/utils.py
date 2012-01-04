@@ -18,7 +18,7 @@ def addLineToFile(filename, line):
 	f.close()
 	
 def getTexTabLine(algorithm, ARI, homogeneity, completeness, vmeasure):
-	return '{0} & {1:.5f} & {2:.5f} & {3:.5f} & {4:.5f} \\\\ \\hline\n'.format(algorithm, ARI, homogeneity, completeness, vmeasure)
+	return '{0} & {1:.3f} & {2:.3f} & {3:.3f} & {4:.3f} \\\\ \\hline\n'.format(algorithm, ARI, homogeneity, completeness, vmeasure)
 	
 def addToResult(algorithm, ARI, homogeneity, completeness, vmeasure):
 	addLineToFile('result', getTexTabLine(algorithm, ARI, homogeneity, completeness, vmeasure))
