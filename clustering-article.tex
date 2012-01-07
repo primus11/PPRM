@@ -24,27 +24,33 @@
 \begin{abstract}
 Have you ever wondered how is it possible that there is advertisement on a web page you
 are intersted in? Or how You-tube is offering you videos you are likely searching for? 
-One of the techiques used is clustering. In this paper few of most known
+One of the techiques used is clustering. In this paper a few of the most known
 algorithms are researched and compared to each other.
 \end{abstract}
 
 \begin{IEEEkeywords}
-Machine learning, clustering, k-means, ECMC, Expectation Maximization.
+clustering, k-means, ECM, EMGMM, density, spectral, information theoretic.
 \end{IEEEkeywords}
 
 \section{Introduction}
 Clustering (or cluster analysis) is an unsupervised machine learning task of partitioning
 a dataset into subsets (groups), so that members of the same subset are more similar to each other
 (according to some criterion) than to members of other subsets. Each subset is called a cluster.
+This task should be accomplished without any prior knowledge about the structure of the data, and in general
+even without knowing the number of clusters which comprise the data.
 
 The problem of clustering has been addressed in many contexts and by researchers in many fields. It has
 broad appeal and is useful as one of the steps in exploratory data analysis (data mining). The importance
-and interdisciplinary nature of clustering is evident through its vast literature and rich history.
+and interdisciplinary nature of clustering is evident through its vast literature and rich history, even
+in disciplines such as biology, psychiatry, psychology, archeology, geology, geography and
+marketing [Jain and Dubes, 1988].
 
 Clustering is recognized as an important tool in areas such as image segmentation,
 speech recognition, signal compression, medical research, document storage and retrieval,
 world-wide-web search and mining as well as bioinformatics.
 
+\begin{figure}[h]
+\label{taxonomy}
 \begin{tikzpicture}[scale=1.1, text width=1.8cm, text centered]
     \tikzstyle{every node} = [rectangle,draw]
 
@@ -52,8 +58,8 @@ world-wide-web search and mining as well as bioinformatics.
     \node (b) at (5, 4) {Hierarchical};
     \node (c) at (8.8, 3.2) {Partitional};
 
-    \node (d) at (4, 3) [text width=2.1cm] {Agglomerative};
-    \node (e) at (6.2, 3) {Divisive};
+    \node (d) at (4, 3.2) [text width=2.1cm] {Agglomerative};
+    \node (e) at (6.2, 3.2) {Divisive};
 
     \node (f) at (4.2, 1.3) {Function \\ Optimization};
     \node (g) at (6.2, 1.3) {Mixture \\ Models};
@@ -83,6 +89,21 @@ world-wide-web search and mining as well as bioinformatics.
     \draw [-] (h) -- (l);
     \draw [-] (h) -- (m);
 \end{tikzpicture}
+\caption{Taxonomy of clustering approaches.}
+\end{figure}
+
+Due to ill-posed nature of clustering (the goal is to find a \textit{reasonable} partition of the data),
+no clustering technique is universally applicable, resulting in tens, if not hundreds of various algorithms
+that differ significantly in their notion of what constitutes a cluster of how to find them.
+Figure ~\ref{taxonomy} shows a number of different clustering methods. This taxonomy was given
+by [Jenssen, 2005].
+
+The hierarchical clustering algorithms produce $n$ levels of groupings, where $n$ is
+the number of examples in data (sometimes called data patterns of feature vectors). These
+methods yield a dendogram which represents the similarity levels at which groupings change.
+Reader can learn more about these approaches in [Kononenko, 2007]. The partitional
+clustering algorithms produce a single partition of the data. They often need the number of clusters
+to be specified in advance but are usually more computationally efficient.
 
 \subsection{Determining the number of clusters in a data set}
 A major problem in clustering is the fact that many clustering algorithms require the
