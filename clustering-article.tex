@@ -125,9 +125,22 @@ the entire dataset measures how appropriately the data has been clustered. We ca
 several times with different values of algorithm's parameters and then decide which clustering to keep based on
 the average silhouette.
 
-The Elbow method looks at the percentage of variance explained as a function of the number of clusters.
+The Elbow method looks at the percentage of variance (the ratio of the between-group variance
+to the total variance) explained as a function of the number of clusters.
 The number of clusters should be chosen so that adding another cluster doesn't give much better modelling
-of the data.
+of the data. For example, when clustering with the k-means algorithm, we can compute the sum of square (SS)
+distances within clusters as well as the total SS, and look for a large gap in percentage of variance
+from one k to the next k+1.
+
+The Calinsky and Harabasz method computes
+\begin{equation}
+\label{calinsky}
+CH(k) = \frac{B(k)/(k-1)}{W(k)/(k-1)}
+\end{equation}
+
+where $B(k)$ and $W(k)$ are the between and within cluster sum of squared errors (distances),
+with $k$ clusters. The idea is to maximize $CH(k)$ over the number of clusters $k$. In effect, this
+is a measure of inter-cluster similarity over intra-cluster similarity.
 
 \section{Clustering performance evaluation}
 To compare different clustering algorithms we need to evaluate clustering results (referred to as cluster validation).
@@ -151,9 +164,9 @@ RI = \frac{a+b}{{n \choose 2}}
 
 where
 \begin{itemize}
-    \item \textit{a} is the number of pairs of elements (points, examples) that are in the same cluster in the first clustering
+    \item \textit{a} is the number of pairs of examples that are in the same cluster in the first clustering
     as well as in the other clustering,
-    \item \textit{b} is the number of pairs of elements that are in different clusters in both clusterings,
+    \item \textit{b} is the number of pairs of examples that are in different clusters in both clusterings,
     \item \textit{n} is the number of elements.
 \end{itemize}
 
@@ -167,7 +180,7 @@ constructs isotropic clusters) with spectral or other algorithms (which can find
 clusters).
 
 \subsection{Homogeneity, completeness and V-measure}
-Rosenberg and Hirschberg (2007) defined two desirable objectives of clustering: homogeneity and
+[Rosenberg and Hirschberg, 2007] defined two desirable objectives of clustering: homogeneity and
 completeness. Homogeneity refers to a desire that each cluster should contain only members
 of a single class whereas completeness expresses the aspiration that all members of a given
 class are assigned to the same cluster.
@@ -206,9 +219,7 @@ $c$ and cluster $k$ respectively, and with $n_{c,k}$ the number of examples from
 to cluster $k$.
 
 The conditional entropy of clusters given class $H(K|C)$ and the entropy of clusters $H(K)$ are
-defined in a symmetric manner.
-
-Rosenberg and Hirschberg (2007) defined V-measure as the harmonic mean of homogeneity and completeness:
+defined in a symmetric manner. The same paper defined V-measure as the harmonic mean of homogeneity and completeness:
 
 \begin{equation}
 \label{v}
@@ -257,11 +268,11 @@ or max number of iterations has been reached. It can be summarized as [Jain et a
 %\end{itemize}
 
 There are two common ways to select the initial centroids: random seed and random partition.
-The random seed method randomly chooses k observations from the data set
+The random seed method randomly chooses k observations from the dataset
 and uses these as the initial means. Random partition
 assigns each example into one of the k clusters randomly.
 The random seed method tends to spread the initial means out, while random partition
-places all of them close to the center of the data set.
+places all of them close to the center of the dataset.
 
 There are also better approaches to initialization: \textit{k-means++} algorithm specifies a
 procedure to initialize the cluster centers before proceeding with the standard k-means
@@ -555,7 +566,7 @@ distribution because they used a non-parametric estimation of the average cluste
 by the same researchers, 2009). Their algorithm starts with random partitioning and continues
 with reassigning examples between clusters, trying to improve the cost function they developed,
 until improvements become sufficiently small. Algorithm's overall computational complexity is
-$O(n^2)$, but it is able to cluster non-convex data sets.
+$O(n^2)$, but it is able to cluster non-convex datasets.
 
 Another group of algorithms was developed by [Jenssen et. al, 2005, 2010]. They combined
 the Renyi entropy [Renyi, 1976], which is an information theoretic measure of uncertainty of a random variable,
@@ -575,7 +586,7 @@ density estimator developed by [Parzen, 1962] (Parzen-Rosenblatt window techniqu
 choosing the kernel size (this is a problem of all kernel-based methods).
 
 An early idea to maximize the Cauchy-Schwarz pdf divergence was to seed a number
-of small initial clusters in the data set, grow clusters (assigning examples to clusters
+of small initial clusters in the dataset, grow clusters (assigning examples to clusters
 in a way that maximizes the divergence) until all examples have been clustered, and then
 reassign the members of the worst cluster (decided again by the divergence), reducing the number of clusters. 
 The reassigning step is repeated until the desired number of clusters is reached.
@@ -588,7 +599,7 @@ by discovering large scale structures first, followed by fine tuning as the kern
 
 The main advantage of these clustering approaches is that the underlying clustering metric is
 based on entropy. Entropy conveys information about the shape of probability distribution,
-and not only variance (which e.g. k-means rely on). This enables the clustering of data sets consisting of
+and not only variance (which e.g. k-means rely on). This enables the clustering of datasets consisting of
 elongated and highly irregular clusters.
 
 % TODO: connection with graph-theoretic approaches
