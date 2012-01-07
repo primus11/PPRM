@@ -315,7 +315,7 @@ s(i, j) = dist(i,j) + radius(C_j)
 f = 1 - \frac {\frac {s} {2}} {\sqrt{ \sum_{d=1}^{D} (C_c^d - x_i^d)}}
 \end{equation}
 \begin{equation}\label{ECMequ3}
-Cc^d = Cc^d + (f * (x_i^d - C_c^d))
+Cc^d = Cc^d + (f \cdot (x_i^d - C_c^d))
 \end{equation}
 
 %This way it holds for each example in its own cluster that the distance between the center and the example
@@ -343,7 +343,7 @@ For statistical models Gaussian distribution is mostly used, in which parameters
 variance-covariance matrix $\sum$. Its probability density function is shown in equation \ref{equgauss}.
 
 \begin{equation}\label{equgauss}
-	N(x|\mu,\sum) = \frac{1}{\sqrt{(2\pi)^D * |\sum|}} * exp^{-\frac{(x-\mu)^T*\sum^{-1}*(x-\mu)}{2}}
+	N(x|\mu,\sum) = \frac{1}{\sqrt{(2\pi)^D \cdot |\sum|}} \cdot e^{-\frac{(x-\mu)^T \cdot \sum^{-1} \cdot (x-\mu)}{2}}
 \end{equation}
 
 Because one distribution cannot accurately model all the data we use a mixture of distributions - convex
@@ -352,7 +352,7 @@ combinations of more probability distributions. Mixture distributions have an ar
 as shown in equation \ref{equmixdist}.
 
 \begin{equation}\label{equmixdist}
-	p(x) = \sum_{k=1}^K {\pi_k*N(x|\mu_k, {\sum}_k)}
+	p(x) = \sum_{k=1}^K {\pi_k N(x|\mu_k, {\sum}_k)}
 \end{equation}
 
 Three parameters $\pi$, $\mu$ and $\sum$ have to be defined to suit the maximum likelihood as in the equation \ref{equmaxlike}
@@ -361,7 +361,7 @@ and \ref{equmaxlike2}.
 \begin{equation}\label{equmaxlike}
 	MLE=\arg\max_\theta {p(P|o)} = \arg\max_\theta {p({x1,x2,...,xn}|\pi,\mu,\sum)}
 \end{equation}
-\begin{equation}\label{equmaxlike}
+\begin{equation}\label{equmaxlike2}
 	MLE = \arg\max_\theta {\prod_{i=1}^N p(x_i|\pi,\mu,\sum)}
 \end{equation}
 
@@ -378,13 +378,13 @@ result to 0 we get $\sum_k$ shown in equation \ref{equsumk}. For $\pi_k$ we take
 shown in \ref{equpik}.
 
 \begin{equation}\label{equfindmi}
-	\mu_k = \frac {\sum_{i=1}^N r_{ik}*x_i} {\sum_{i=1}^N r_{ik}}
+	\mu_k = \frac {\sum_{i=1}^N r_{ik} x_i} {\sum_{i=1}^N r_{ik}}
 \end{equation}
 \begin{equation}\label{equrik}
-	r_{ik} = \frac {\pi_k*N(x_i|\mu_k,{\sum}_k)} {\sum_{j=1}^K \pi_j*N(x_i|\mu_j,{\sum}_j)}
+	r_{ik} = \frac {\pi_k N(x_i|\mu_k,{\sum}_k)} {\sum_{j=1}^K \pi_j N(x_i|\mu_j,{\sum}_j)}
 \end{equation}
 \begin{equation}\label{equsumk}
-	 {\sum}_k = \frac {\sum_{i=1}^N r_{ik}*(x_i-\mu_k)*(x_i-\mu_k)^T} {\sum_{i=1}^N r_{ik}}
+	 {\sum}_k = \frac {\sum_{i=1}^N r_{ik} (x_i-\mu_k) (x_i-\mu_k)^T} {\sum_{i=1}^N r_{ik}}
 \end{equation}
 \begin{equation}\label{equpik}
 	\pi_k=\frac {\sum_{i=1}^N r_{ik}} {N}
