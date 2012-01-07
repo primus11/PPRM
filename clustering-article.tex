@@ -356,10 +356,11 @@ particular neighborhood contains sufficiently many examples, the entire neighbor
 designated to belong to a new cluster. The algorithm then searches the neighborhoods of examples
 in this new cluster, expanding it until it is completely found.
 This process is repeated with random unassigned examples until no new clusters can be started.
+Examples which were not assigned to clusters are classified as noise.
 
 The time complexity of DBSCAN is most affected by the neighborhood queries. If a spatial
 indexing structure is used to provide logarithmic queries, then the overall time complexity
-if $O(n\log n)$. Advantages include the ability to find arbitrality shaped clusters (even
+is $O(n\log n)$. Advantages include the ability to find arbitrarily shaped clusters (even
 non-linearly separable ones, which cannot be clustered with e.g. K-means); it has a notion of
 noise and does not require the specification of the number of cluster in advance (since it
 discovers clusters naturally by itself). However, it has difficulties handling data containing
