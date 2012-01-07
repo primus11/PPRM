@@ -18,7 +18,7 @@ for d in data:
 		clusterIdx[d[2]] = len(clusterIdx)
 	
 	labels.append(clusterIdx[d[2]])
-		
-pylab.scatter(examples.T[1], examples.T[0], c=labels)
+
+draw.scatter(examples, labels)
 draw.setImgTitle(os.path.splitext(os.path.basename(sys.argv[1]))[0])
 draw.showImage()

@@ -33,7 +33,7 @@ print('Completeness: {0}'.format(completeness))
 print('V-measure: {0}'.format(v_measure))
 addToResult('GMM', ari, homogeneity, completeness, v_measure)
 
-pylab.scatter(examples.T[1], examples.T[0], c=labels)
+draw.scatter(examples, labels)
 print(os.path.splitext(os.path.basename(sys.argv[1]))[0])
 draw.setImgTitle('GMM_' + os.path.splitext(os.path.basename(sys.argv[1]))[0])
 draw.showImage()

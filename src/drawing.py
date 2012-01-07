@@ -39,3 +39,16 @@ def showImage():
 	else:
 		pylab.clf()
 		imgFilename = "default"
+		
+def scatter(examples, labels):
+	markers = 'osD+*xh'
+	colors = 'rgbcmky'
+	
+	idx = {}
+	
+	for i in range(len(labels)):
+		if labels[i] not in idx:
+			idx[labels[i]] = len(idx)
+			
+		pylab.scatter(examples[i].T[1], examples[i].T[0], c=colors[idx[labels[i]]], marker=markers[idx[labels[i]]])
+	
