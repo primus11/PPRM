@@ -8,6 +8,8 @@
 \usepackage[section] {placeins}
 \graphicspath{{datasets/}{src//images//}}
 
+\renewcommand{\labelenumi}{\arabic{enumi}. } % Changes enumerate style to number+dot
+
 %\jvol{xx}
 %\jnum{xx}
 %\jmonth{November}
@@ -96,7 +98,10 @@ TODO: external/internal evaluation
 Rand Index (RI) is a measure of similarity between data clusterings. It counts
 the number of agreements between two clusterings:
 
-$RI = \frac{a+b}{{n \choose 2}}$
+\begin{equation}
+\label{RI}
+RI = \frac{a+b}{{n \choose 2}}
+\end{equation}
 
 where
 \begin{itemize}
@@ -126,17 +131,29 @@ class are assigned to the same cluster.
 %\end{itemize}
 We can translate these objectives to math in the following way:
 
-$homogeneity = 1 - \frac{H(C|K)}{H(C)}$
+\begin{equation}
+\label{homogeneity}
+homogeneity = 1 - \frac{H(C|K)}{H(C)}
+\end{equation}
 
-$completeness = 1 - \frac{H(K|C)}{H(K)}$
+\begin{equation}
+\label{completeness}
+completeness = 1 - \frac{H(K|C)}{H(K)}
+\end{equation}
 
 where $H(C|K)$ is the conditional entropy of the classes given the cluster assignments defined as:
 
-$H(C|K) = - \sum\limits_{c=1}^{|C|}\sum\limits_{k=1}^{|K|}\frac{n_{c,k}}{n}\cdot \log{\frac{n_{c,k}}{n_k}}$
+\begin{equation}
+\label{hck}
+H(C|K) = - \sum\limits_{c=1}^{|C|}\sum\limits_{k=1}^{|K|}\frac{n_{c,k}}{n}\cdot \log{\frac{n_{c,k}}{n_k}}
+\end{equation}
 
 and $H(C)$ is the entropy of the classes:
 
-$H(C) = - \sum\limits_{c=1}^{|C|}\frac{n_c}{n} \cdot \log{\frac{n_c}{n}}$
+\begin{equation}
+\label{hc}
+H(C) = - \sum\limits_{c=1}^{|C|}\frac{n_c}{n} \cdot \log{\frac{n_c}{n}}
+\end{equation}
 
 with $n$ the total number of examples, $n_c$ and $n_k$ the number of examples belonging to class
 $c$ and cluster $k$ respectively, and with $n_{c,k}$ the number of examples from class $c$ assigned
@@ -147,7 +164,10 @@ defined in a symmetric manner.
 
 Rosenberg and Hirschberg (2007) defined V-measure as the harmonic mean of homogeneity and completeness:
 
-$v = \frac{2 \cdot h \cdot c}{h+c}$
+\begin{equation}
+\label{v}
+v = \frac{2 \cdot h \cdot c}{h+c}
+\end{equation}
 
 Advantages of these measures are bounded scores ($[0, 1]$, 1.0 means perfect score), intuitive interpretation and that
 no assumption is made on cluster structure (similar to ARI). Unfortunately, they are not normalized
@@ -436,7 +456,7 @@ of clusters to construct $k$:
 
 % TODO: refer to authors of different variants
 
-\begin{itemize}
+\begin{enumerate}
     \item Construct a similarity graph.
     \item Compute the unnormalized Laplacian L.
     \item Compute the first $k$ eigenvectors $u_1, \dots, u_k$ of $L$ and combine them into
@@ -444,7 +464,7 @@ of clusters to construct $k$:
     \item Cluster rows of $U$ ($y_i \in \mathbb{R}^k$ is the $i$-th row) with the K-means algorithm
     into clusters $C_1, \dots, C_k$.
     \item Output are clusters $A_1, \dots, A_k$, where $A_i = \{ j|y_j \in C_i \}$
-\end{itemize}
+\end{enumerate}
 
 The main trick of this algorithm is to change the representation of the examples to $y_i \in \mathbb{R}^k$.
 In this new representation clusters can be easily detected, even by a simple algorithm such as K-means.
@@ -483,7 +503,10 @@ the Renyi entropy [Renyi, 1976], which is an information theoretic measure of un
 and the well known Cauchy-Schwarz inequality, forming Cauchy-Schwarz pdf (probability density function)
 divergence measure (statistical distance). The measure between two cluster pdf's $p(x)$ and $q(x)$ is defined as:
 
-$D_{CS}(p, q) = -\log \frac{\int p(x)q(x)dx}{\sqrt{\int p^2(x)dx \int q^2(x)dx}}$
+\begin{equation}
+\label{CS}
+D_{CS}(p, q) = -\log \frac{\int p(x)q(x)dx}{\sqrt{\int p^2(x)dx \int q^2(x)dx}}
+\end{equation}
 
 This divergence can be regarded as an approximation of Kullback-Leibler divergence between two pdf's [Jenssen, 2009].
 An intuitive reasoning behind this measure is that in order to optimize $D_{CS}$, the entropy of each individual cluster must
