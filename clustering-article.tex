@@ -29,7 +29,7 @@ algorithms are researched and compared to each other.
 \end{abstract}
 
 \begin{IEEEkeywords}
-clustering, k-means, ECM, EMGMM, density, spectral, information theoretic.
+k-means, ECM, EMGMM, density, spectral, information theoretic.
 \end{IEEEkeywords}
 
 \section{Introduction}
@@ -105,9 +105,13 @@ Reader can learn more about these approaches in [Kononenko, 2007]. The partition
 clustering algorithms produce a single partition of the data. They often need the number of clusters
 to be specified in advance but are usually more computationally efficient.
 
+% TODO: related work (Jain)
+
 In this article we discuss several clustering algorithms, from the most intuitive and most commonly
 used k-means through more advanced Expectation Maximization and density-based algorithms
 to some newer developments such as spectral clustering and information theoretic clustering.
+
+% TODO: maybe structure of the article?
 
 \subsection{Determining the number of clusters in a dataset}
 A major problem in clustering is the fact that many clustering algorithms require the
@@ -296,7 +300,7 @@ fact that the smoothed time complexity of k-means is polynomial.
 
 \subsection{Evolving Clustering Method}
 
-ECM (Evolving Clustering Method) is a dynamic clustering method mostly used as a fast \textit{one-pass} online algorithm. % with fast \textit{one-pass} method.
+ECM (Evolving Clustering Method) is a dynamic clustering method used mostly as a fast \textit{one-pass} online algorithm. % with fast \textit{one-pass} method.
 Its extension ECMc (Evolving Clustering Method with Constrained minimization) is used as offline algorithm where constrained optimization
 is applied. Both ECM and its extension were introduced in 2001 by Qun Song and Nikola Kasabov.
 
