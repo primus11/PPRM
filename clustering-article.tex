@@ -94,7 +94,7 @@ world-wide-web search and mining as well as bioinformatics.
 
 Due to ill-posed nature of clustering (the goal is to find a \textit{reasonable} partition of the data),
 no clustering technique is universally applicable, resulting in tens, if not hundreds of various algorithms
-that differ significantly in their notion of what constitutes a cluster of how to find them.
+that differ significantly in their notion of what constitutes a cluster or how to find them.
 Figure ~\ref{taxonomy} shows a number of different clustering methods. This taxonomy was given
 by [Jenssen, 2005].
 
@@ -105,20 +105,29 @@ Reader can learn more about these approaches in [Kononenko, 2007]. The partition
 clustering algorithms produce a single partition of the data. They often need the number of clusters
 to be specified in advance but are usually more computationally efficient.
 
-In this article, we discuss several clustering algorithms, from the most intuitive and most commonly
-used k-means, through more advanced Expectation Maximization and density-based algorithms as well
-as some newer developments such as spectral clustering and information theoretic clustering.
+In this article we discuss several clustering algorithms, from the most intuitive and most commonly
+used k-means through more advanced Expectation Maximization and density-based algorithms
+to some newer developments such as spectral clustering and information theoretic clustering.
 
-\subsection{Determining the number of clusters in a data set}
+\subsection{Determining the number of clusters in a dataset}
 A major problem in clustering is the fact that many clustering algorithms require the
 number of clusters to find in a dataset as input (this quantity is usually denoted $k$).
 Several algorithms such as those based on density do not require the specification of this
-parameter and hierarchical clustering algorithms essentially output clusterings 
+parameter and hierarchical clustering algorithms essentially output clusterings (a clustering
+is simply a set of clusters, usually containing all the data)
 for all possible values of this parameter (somewhat avoiding the problem).
 
 
 \section{Clustering performance evaluation}
-TODO: external/internal evaluation
+To compare different clustering algorithms we need to evaluate clustering results (referred to as cluster validation).
+A measure of similarity between two clusterings can be used to compare how well different clustering algorithms perform
+on a dataset. The literature divides these measures into two large groups: those used for \textit{internal} evaluation
+and into \textit{external} evaluation methods. Internal evaluation methods evaluate a clustering result on the data
+that was clustered. This evaluation is biased towards algorithms that use the same cluster model. Examples of such methods
+include Davies-Boulding index and Dunn index. In external evaluation, clustering results are evaluated based on data
+that was not used for clustering, such as known class labels. This usually requires human-created datasets. Rand measure,
+Adjusted Rand measure (or index), F-measure, Jaccard index, Fowlkes-Mallows index and Mutual Information are examples
+of external evaluation methods. We used ARI, homogeneity and completeness:
 
 \subsection{Adjusted Rand Index}
 Rand Index (RI) is a measure of similarity between data clusterings. It counts
@@ -142,7 +151,7 @@ ARI has the advantage over plain RI in that it scores random
 clusterings close to 0 for any number of clusters and data samples. It returns
 a value in range $[-1, 1]$, where negative values are bad, similar clusterings have
 positive values and 1.0 is the perfect match score. ARI makes no assumption on the cluster
-structure and can therefore be used to compare different algorithms such as K-means (which
+structure and can therefore be used to compare different algorithms such as k-means (which
 constructs isotropic clusters) with spectral or other algorithms (which can find non-convex
 clusters).
 
@@ -196,14 +205,14 @@ v = \frac{2hc}{h+c}
 \end{equation}
 
 Advantages of these measures are bounded scores ($[0, 1]$, 1.0 means perfect score), intuitive interpretation and that
-no assumption is made on cluster structure (similar to ARI). Unfortunately, they are not normalized
+no assumption is made on the cluster structure (similar to ARI). Unfortunately, they are not normalized
 with respect to random clustering: random clustering will not yield the same values and it won't
-yield zero score when the number of clusters is large compared to the number of samples. For smaller
-sample sizes or larger number of clusters it is better to use an adjusted measure such as ARI.
+yield zero score when the number of clusters is large compared to the number of examples. For smaller
+datasets or larger number of clusters it is better to use an adjusted measure such as ARI.
 
 \section{Algorithms}
-\subsection{K-means}
-K-means clustering (KMC) is a simple and well known algorithm. It is usually very
+\subsection{k-means}
+k-means clustering (KMC) is a simple and well known algorithm. It is usually very
 fast (commonly run multiple times with different starting conditions), but tends
 to produce spherical clusters with similar size, which can be undesirable.
 k-means is often used as a preprocessing step for other algorithms. The standard
@@ -243,7 +252,7 @@ assigns each example into one of the k clusters randomly.
 The random seed method tends to spread the initial means out, while random partition
 places all of them close to the center of the data set.
 
-There are also better approaches to initialization: k-means++ algorithm specifies a
+There are also better approaches to initialization: \textit{k-means++} algorithm specifies a
 procedure to initialize the cluster centers before proceeding with the standard k-means
 optimization iterations. With the k-means++ initialization, the algorithm is guaranteed
 to find a solution that is $O(\log k)$ competitive to the optimal k-means solution.
@@ -327,7 +336,7 @@ Afterwards, constrained optimization can be applied to minimize the function \re
 
 \subsection{Expectation Maximization Gaussian Mixture Model}
 
-Gaussian Mixture Models are among the most statistically mature methods for clustering. Unlike K-means,
+Gaussian Mixture Models are among the most statistically mature methods for clustering. Unlike k-means,
 GMMs are able to build soft clustering boundaries, i.e., examples can belong to any class (cluster) with a given probability.
 
 For statistical models Gaussian distribution is mostly used, in which parameters are the mean vector $\mu$ and a
@@ -414,7 +423,7 @@ Examples which were not assigned to clusters are classified as noise.
 The time complexity of DBSCAN is most affected by the neighborhood queries. If a spatial
 indexing structure is used to provide logarithmic queries, then the overall time complexity
 is $O(n\log n)$. Advantages include the ability to find arbitrarily shaped clusters (even
-non-linearly separable ones, which cannot be clustered with e.g. K-means); it has a notion of
+non-linearly separable ones, which cannot be clustered with e.g. k-means); it has a notion of
 noise and does not require the specification of the number of cluster in advance (since it
 discovers clusters naturally by itself). However, it has difficulties handling data containing
 clusters of different densities and is very sensitive to input parameters (e.g. setting
@@ -452,7 +461,7 @@ indexing structure, such as kd-tree).
 \subsection{Spectral Clustering}
 Spectral clustering has become more popular in recent years. It uses standard linear algebra
 methods, it is relatively simple to implement and its results are often better than those of
-traditional clustering approaches (such as K-means). In short, spectral clustering exploits the
+traditional clustering approaches (such as k-means). In short, spectral clustering exploits the
 eigenvalues and eigenvectors (called spectrum of a matrix, hence the name) of the similarity matrix
 (which represents
 a measure of similarity between examples) of the data to perform dimensionality reduction for
@@ -494,13 +503,13 @@ of clusters to construct $k$:
     \item Compute the unnormalized Laplacian L.
     \item Compute the first $k$ eigenvectors $u_1, \dots, u_k$ of $L$ and combine them into
     $U \in \mathbb{R}^{n \times k}$ as columns.
-    \item Cluster rows of $U$ ($y_i \in \mathbb{R}^k$ is the $i$-th row) with the K-means algorithm
+    \item Cluster rows of $U$ ($y_i \in \mathbb{R}^k$ is the $i$-th row) with the k-means algorithm
     into clusters $C_1, \dots, C_k$.
     \item Output are clusters $A_1, \dots, A_k$, where $A_i = \{ j|y_j \in C_i \}$
 \end{enumerate}
 
 The main trick of this algorithm is to change the representation of the examples to $y_i \in \mathbb{R}^k$.
-In this new representation clusters can be easily detected, even by a simple algorithm such as K-means.
+In this new representation clusters can be easily detected, even by a simple algorithm such as k-means.
 
 Spectral clustering is being given a lot of attention mainly because it does not make strong
 assumptions on the form of the clusters. Unlike many other clustering algorithms it
@@ -511,6 +520,12 @@ be solved. There are no issues of getting stuck in a local minima and there is n
 restart the algorithm several times with different initializations. However, choosing
 a good similarity graph is not trivial, and spectral clustering can
 be quite unstable under different choices of the parameters for the neighborhood graphs.
+
+Spectral clustering is a newer line of research in otherwise surprisingly old branch of clustering
+approaches called graph-theoretic clustering. The best known graph-theoretic algorithm is
+based on construction of the minimal spanning tree of the data [Zahn, 1971], and then deleting
+the edges with the largest lengths to generate clusters. For an appropriately constructed minimal
+spanning tree, this algorithm can handle a wide variety of data structures.
 
 \subsection{Information Theoretic Clustering}%Cauchy-Schwarz Divergence Clustering}
 KMC and similar are examples of so-called \textit{parametric} methods of clustering. These
@@ -562,7 +577,7 @@ by discovering large scale structures first, followed by fine tuning as the kern
 
 The main advantage of these clustering approaches is that the underlying clustering metric is
 based on entropy. Entropy conveys information about the shape of probability distribution,
-and not only variance (which e.g. K-means rely on). This enables the clustering of data sets consisting of
+and not only variance (which e.g. k-means rely on). This enables the clustering of data sets consisting of
 elongated and highly irregular clusters.
 
 % TODO: connection with graph-theoretic approaches
@@ -630,7 +645,7 @@ dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as we
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{kmeans_red-blue-clusters.pdf}
-\caption{K-means clustering on red-blue.}
+\caption{k-means clustering on red-blue.}
 \label{kmeans_redblue}
 \end{figure}
 
@@ -689,7 +704,7 @@ to get good result is DBSCAN.
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{kmeans_circle-weird.pdf}
-\caption{K-means clustering on circle-weird.}
+\caption{k-means clustering on circle-weird.}
 \label{kmeans_circleweird}
 \end{figure}
 
@@ -748,7 +763,7 @@ the best one was DBSCAN as we can see in table \ref{halfmoonsresults}.
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{kmeans_half-moons.pdf}
-\caption{K-means clustering on half-moons.}
+\caption{k-means clustering on half-moons.}
 \label{kmeans_halfmoons}
 \end{figure}
 
