@@ -239,28 +239,32 @@ fact that the smoothed time complexity of k-means is polynomial.
 
 \subsection{Evolving Clustering Method}
 
-ECM (Evolving Clustering Method) is dynamic clustering method mostly used for on-line system with fast "one-pass" algorithm.
-It's extension ECMc (Evolving Clustering Method with Constrained minimization) is used for off-line where constrained optimisation
-is applied. Both ECM and it's extension were introduced in 2001 by Qun Song and Nikola Kasabov.
+ECM (Evolving Clustering Method) is a dynamic clustering method mostly used for on-line system with fast "one-pass" algorithm.
+Its extension ECMc (Evolving Clustering Method with Constrained minimization) is used for off-line where constrained optimization
+is applied. Both ECM and its extension were introduced in 2001 by Qun Song and Nikola Kasabov.
 
-ECM is a distance based clustering method where each cluster has a centre, where all of cluster's members are less distant
-from the centre than $D_{thr}$. $D_{thr}$ is by default input in algorithm, unlike to some others where number of cluster is
-input. However, $D_{thr}$ does affect number of clusters but not directly. Therefore, when comparing ECM algorithm to
-others you have to be aware of their inputs.
+ECM is a distance based clustering method where the distance between each of cluster's members and the cluster center is less than $D_{thr}$.%all of cluster's members are less distant
+%from the center than $D_{thr}$.
+$D_{thr}$ is by default the algorithm's input, unlike to some other algorithms where the number of clusters is required as
+input. $D_{thr}$ does affect the number of clusters, but not directly. Therefore, when comparing ECM algorithm to
+others, we have to be aware of their inputs.
 
-ECM takes samples from a data stream and with every new data cluster's radius can be updated or it's center changed or
-new cluster can be created. At some point, usually when cluster radius reaches threshold value $D_{thr}$, cluster radius
-will not update anymore.
+The algorithm takes examples from a data stream and proceeds with one of three actions: updating corresponding cluster radius, changing
+cluster center or creating a new cluster.
+%every new data cluster's radius can be updated or it's center changed or
+%new cluster can be created.
+At some point, usually when cluster radius reaches threshold value $D_{thr}$, cluster radius
+is not updated anymore.
 
-Both ECM and ECMc consist of several steps where ECM is a pre-process to ECMc. First sample is used to create first cluster
-with radius 0 and centre on the sample itself. For every new sample $x_i$ next steps are taken:
+Both ECM and ECMc consist of several steps where ECM is a preprocess to ECMc. First example is used to create the first cluster
+with radius 0 and center on the example itself. For every new example $x_i$ these next steps are taken:
 \begin{enumerate}
-	\item Distance from $x_i$ to every cluster centre is calculated as shown in equation \ref{ECMdist}.
+	\item Distance from $x_i$ to every cluster center is calculated as shown in equation \ref{ECMdist}.
 	\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
 	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster
 		is created and algorithm continues at step 1.
-	\item Cluster's centre, with minumum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
-		centre's position is on the line from old centre to sample $x_i$ so that distance from new centre to point $x_i$ is
+	\item Cluster's center, with minumum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
+		center's position is on the line from the old center to the example $x_i$ so that distance from the new center to the example $x_i$ is
 		equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
 \end{enumerate}
 
@@ -279,12 +283,15 @@ f = 1 - \frac {\frac {s} {2}} {\sqrt{ \sum_{d=1}^{D} (C_c^d - x_i^d)}}
 Cc^d = Cc^d + (f * (x_i^d - C_c^d))
 \end{equation}
 
-This way it holds for each sample in its own cluster that the distance between centre and sample is less than or equal to $D_{thr}$. Afterwards constrained optimisation can be applied to minimize the function \ref{ECMJ}. For optimisation the following steps have to be taken:
+%This way it holds for each example in its own cluster that the distance between the center and the example
+%is less than or equal to $D_{thr}$.
+As a result, distances between examples and their corresponding cluster centers are less than or equal to $D_{thr}$.
+Afterwards, constrained optimization can be applied to minimize the function \ref{ECMJ}. For optimization the following steps have to be taken:
 \begin{enumerate}
-	\item Change the membership of each sample in data to cluster that has the smallest distance to it's centre
-	\item Calculate new cluster centre to fit new changes
-	\item The end of algorithm is reached if enough iterations occured or the change of function \ref{ECMJ} is less than certain amount.
-		Otherwise continue with going back to step 1.
+	\item Change the membership of each example to a cluster that has the smallest distance to its center.
+	\item Calculate new cluster center to satisfy changes.
+	\item Algorithm terminates if enough iterations occured or the value of \ref{ECMJ} changed less than a certain amount.
+		Otherwise return to step 1.
 \end{enumerate}
 
 \begin{equation}\label{ECMJ}
@@ -294,19 +301,19 @@ This way it holds for each sample in its own cluster that the distance between c
 
 \subsection{Expectation Maximization Gaussian Mixture Model}
 
-Gaussian Mixture Models are among the most statistically mature methods for clustering. But unlike K-Means,
-GMMs are able to build soft clustering boundaries, i.e., points in space can belone to any class with a giver probability.
+Gaussian Mixture Models are among the most statistically mature methods for clustering. Unlike K-means,
+GMMs are able to build soft clustering boundaries, i.e., examples can belong to any class (cluster) with a given probability.
 
 For statistical models Gaussian distribution is mostly used, in which parameters are the mean vector $\mu$ and a
-variance-covariance matrix $\sum$. It's probability density function is shown in equation \ref{equgauss}.
+variance-covariance matrix $\sum$. Its probability density function is shown in equation \ref{equgauss}.
 
 \begin{equation}\label{equgauss}
 	N(x|\mu,\sum) = \frac{1}{\sqrt{(2\pi)^D * |\sum|}} * exp^{-\frac{(x-\mu)^T*\sum^{-1}*(x-\mu)}{2}}
 \end{equation}
 
-As one distribution mostly cannot accurately model all the data we use mixture of distributions which are convex
-combinations of more probablility distributions. So mixture distributions have an array of component distributions
-($\mu$,$\sum$) and a coefficient array ($\pi_k$), which contains the weight of each component probablility distributions
+Because one distribution cannot accurately model all the data we use a mixture of distributions - convex
+combinations of more probability distributions. Mixture distributions have an array of component distributions
+($\mu$,$\sum$) and a coefficient array ($\pi_k$), which contains the weight of each component's probability distribution
 as shown in equation \ref{equmixdist}.
 
 \begin{equation}\label{equmixdist}
@@ -323,7 +330,7 @@ and \ref{equmaxlike2}.
 	MLE = \arg\max_\theta {\prod_{i=1}^N p(x_i|\pi,\mu,\sum)}
 \end{equation}
 
-The problem can be simplified by taking the log of the function that gives us the huge advantage of converting the
+The problem can be simplified by taking the log of the function that gives us huge advantage of converting the
 product into a sum as shown in equation \ref{equmaxlikelog}.
 
 \begin{equation}\label{equmaxlikelog}
@@ -331,7 +338,7 @@ product into a sum as shown in equation \ref{equmaxlikelog}.
 \end{equation}
 
 Taking the derivative of the likelihood function with respect to $\mu$ and setting the result to 0, $\mu$ can be found as
-shown in equation \ref{equfindmi}, \ref{equrik}. Similar, if we take derivative with respect to $\sum_k^{-1}$ and set
+shown in equation \ref{equfindmi}, \ref{equrik}. Similarly, if we take derivative with respect to $\sum_k^{-1}$ and set
 result to 0 we get $\sum_k$ shown in equation \ref{equsumk}. For $\pi_k$ we take derivative of $\pi_k$ and get equation
 shown in \ref{equpik}.
 
@@ -348,14 +355,14 @@ shown in \ref{equpik}.
 	\pi_k=\frac {\sum_{i=1}^N r_{ik}} {N}
 \end{equation}
 
-We also introduce hidden variables $s_i$ that define if a sample belongs to certain group.
+We also introduce hidden variables $s_i$ that define if an example belongs to a certain group.
 
-Using Expectation Maximization we numerically find the solution. Algorithm got it's name based on two steps E and M,
-which are essential. In step E we calculate values of hidden variables $s_i$ and in step M we correct parameters based
-on value of hidden attributes. Steps to follow:
+Using Expectation Maximization we numerically find the solution. Algorithm got its name from steps E and M,
+which are essential. In step E we calculate the values of hidden variables $s_i$ and in step M we correct the parameters based
+on the values of hidden attributes. Steps to follow:
 
 \begin{enumerate}
-	\item All parameters, means, convariances and mixing coefficients, have to be set and initial value of log-likelihood
+	\item All parameters, means, convariances and mixing coefficients, have to be set and the initial value of log-likelihood
 		function has to be evaluated.
 	\item Values of $r_ik$ should be calculated based on set parameters.
 	\item New values of means, covariances and mixing coeficients should be evaluated with $r_{ik}$ in step 2.
