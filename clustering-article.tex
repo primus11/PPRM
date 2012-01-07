@@ -6,7 +6,7 @@
 \usepackage{amssymb}
 
 \usepackage[section] {placeins}
-\graphicspath{{datasets/}{src//images//}}
+\graphicspath{{src//images//}}
 
 \renewcommand{\labelenumi}{\arabic{enumi}. } % Changes enumerate style to number+dot
 
@@ -594,21 +594,21 @@ We can see it on figure \ref{dataset3}.
 
 \begin{figure}[th]
 \centering
-\includegraphics[width=15pc]{red-blue.png}
+\includegraphics[width=15pc]{red-blue-clusters.pdf}
 \caption{Dataset named ''red-blue''.}
 \label{dataset1}
 \end{figure}
 
 \begin{figure}[th]
 \centering
-\includegraphics[width=15pc]{circle-weird.png}
-\caption{Dataset named ''circle-weird''.}
+\includegraphics[width=15pc]{circle-weird.pdf}
+\caption{Dataset named ''nested-circle''.}
 \label{dataset2}
 \end{figure}
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=15pc]{half-moons.png}
+\includegraphics[width=15pc]{half-moons.pdf}
 \caption{Dataset named ''half-moons''.}
 \label{dataset3}
 \end{figure}
@@ -675,7 +675,7 @@ dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as we
 \end{table}
 
 
-\subsection{Weird circle}
+\subsection{Nested circle}
 This dataset as described is more difficult to be clustered and the outcome are bad results for most of
 the algorithms. As we can see in table \ref{circleweirdresults} the only algorithm that managed
 to get good result is DBSCAN.
@@ -683,40 +683,40 @@ to get good result is DBSCAN.
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{ECMC_circle-weird.pdf}
-\caption{ECMC on circle-weird.}
+\caption{ECMC on nested-circle.}
 \label{ECMC_circleweird}
 \end{figure}
 
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{GMM_circle-weird.pdf}
-\caption{GMM on circle-weird.}
+\caption{GMM on nested-circle.}
 \label{GMM_circleweird}
 \end{figure}
 
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{spectral_circle-weird.pdf}
-\caption{Spectral clustering on circle-weird.}
+\caption{Spectral clustering on nested-circle.}
 \label{spectral_circleweird}
 \end{figure}
 
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{kmeans_circle-weird.pdf}
-\caption{k-means clustering on circle-weird.}
+\caption{k-means clustering on nested-circle.}
 \label{kmeans_circleweird}
 \end{figure}
 
 \begin{figure}[th]
 \centering
 \includegraphics[width=15pc]{dbscan_circle-weird.pdf}
-\caption{DBSCAN on circle-weird.}
+\caption{DBSCAN on nested-circle.}
 \label{DBSCAN_circleweird}
 \end{figure}
 
 \begin{table}[htbp]
-\caption{Results for circle-weird.}
+\caption{Results for nested-circle.}
 \label{circleweirdresults}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
