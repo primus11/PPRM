@@ -117,6 +117,17 @@ parameter and hierarchical clustering algorithms essentially output clusterings 
 is simply a set of clusters, usually containing all the data)
 for all possible values of this parameter (somewhat avoiding the problem).
 
+The average silhouette of the data is a useful criterion for assessing the number of clusters in data.
+The silhouette of an example is a measure of how well matched it is to the cluster it is assigned
+and how loosely it is matched to the neighbouring cluster. The average silhouette of a cluster
+is therefore a measure of how tightly grouped all the data in the cluster are and the average silhouette of
+the entire dataset measures how appropriately the data has been clustered. We can cluster a dataset
+several times with different values of algorithm's parameters and then decide which clustering to keep based on
+the average silhouette.
+
+The Elbow method looks at the percentage of variance explained as a function of the number of clusters.
+The number of clusters should be chosen so that adding another cluster doesn't give much better modelling
+of the data.
 
 \section{Clustering performance evaluation}
 To compare different clustering algorithms we need to evaluate clustering results (referred to as cluster validation).
