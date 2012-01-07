@@ -145,14 +145,14 @@ where $H(C|K)$ is the conditional entropy of the classes given the cluster assig
 
 \begin{equation}
 \label{hck}
-H(C|K) = - \sum\limits_{c=1}^{|C|}\sum\limits_{k=1}^{|K|}\frac{n_{c,k}}{n}\cdot \log{\frac{n_{c,k}}{n_k}}
+H(C|K) = - \sum\limits_{c=1}^{|C|}\sum\limits_{k=1}^{|K|}\frac{n_{c,k}}{n} \log{\frac{n_{c,k}}{n_k}}
 \end{equation}
 
 and $H(C)$ is the entropy of the classes:
 
 \begin{equation}
 \label{hc}
-H(C) = - \sum\limits_{c=1}^{|C|}\frac{n_c}{n} \cdot \log{\frac{n_c}{n}}
+H(C) = - \sum\limits_{c=1}^{|C|}\frac{n_c}{n} \log{\frac{n_c}{n}}
 \end{equation}
 
 with $n$ the total number of examples, $n_c$ and $n_k$ the number of examples belonging to class
@@ -166,7 +166,7 @@ Rosenberg and Hirschberg (2007) defined V-measure as the harmonic mean of homoge
 
 \begin{equation}
 \label{v}
-v = \frac{2 \cdot h \cdot c}{h+c}
+v = \frac{2hc}{h+c}
 \end{equation}
 
 Advantages of these measures are bounded scores ($[0, 1]$, 1.0 means perfect score), intuitive interpretation and that
