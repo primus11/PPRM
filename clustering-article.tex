@@ -321,9 +321,9 @@ with radius 0 and center on the example itself. For every new example $x_i$ thes
 \begin{enumerate}
 	\item Distance from $x_i$ to every cluster center is calculated as shown in equation \ref{ECMdist}.
 	\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
-	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster
+	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum $s$ is more than $2*D_{thr}$ a new cluster
 		is created and algorithm continues at step 1.
-	\item Cluster's center, with minimum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
+	\item Cluster's center, with minimum $s$ calculated, is moved and radius increased. New radius is calculated as $s/2$ and
 		center's position is on the line from the old center to the example $x_i$ so that distance from the new center to the example $x_i$ is
 		equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
 \end{enumerate}
