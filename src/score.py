@@ -6,8 +6,10 @@ import pylab
 
 #data = parse_tab('../datasets/circle-weird.tab')
 #output = '../datasets/nested-circle-output'
-data = parse_tab('../datasets/half-moons.tab')
-output = '../datasets/half-moons-output'
+#data = parse_tab('../datasets/half-moons.tab')
+#output = '../datasets/half-moons-output'
+data = parse_tab('../datasets/red-blue-clusters.tab')
+output = '../datasets/red-blue-output'
 
 
 classes = [example[-1] for example in data]
