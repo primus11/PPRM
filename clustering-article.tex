@@ -184,14 +184,10 @@ constructs isotropic clusters) with spectral or other algorithms (which can find
 clusters).
 
 \subsection{Homogeneity, completeness and V-measure}
-[Rosenberg and Hirschberg, 2007] defined two desirable objectives of clustering: homogeneity and
+Rosenberg and Hirschberg \cite{rosenberg07} defined two desirable objectives of clustering: homogeneity and
 completeness. Homogeneity refers to a desire that each cluster should contain only members
 of a single class whereas completeness expresses the aspiration that all members of a given
 class are assigned to the same cluster.
-%\begin{itemize}
-%    \item \textbf{homogeneity}: each cluster contains only members of a single class and
-%    \item \textbf{completeness}: all members of a given class are assigned to the same cluster.
-%\end{itemize}
 We can translate these objectives to math in the following way:
 
 \begin{equation}
@@ -302,7 +298,7 @@ fact that the smoothed time complexity of k-means is polynomial.
 
 ECM (Evolving Clustering Method) is a dynamic clustering method used mostly as a fast \textit{one-pass} online algorithm. % with fast \textit{one-pass} method.
 Its extension ECMc (Evolving Clustering Method with Constrained minimization) is used as offline algorithm where constrained optimization
-is applied. Both ECM and its extension were introduced in 2001 by Qun Song and Nikola Kasabov.
+is applied. Both ECM and its extension were introduced in 2001 by Qun Song and Nikola Kasabov \cite{song01}.
 
 ECM is a distance based clustering method where the distance between each of cluster's members and the cluster center is less than $D_{thr}$.%all of cluster's members are less distant
 %from the center than $D_{thr}$.
@@ -832,27 +828,38 @@ really fits it best.
 \section*{Acknowledgements}
 The authors wish to thank the mentor for all his help and suggestions.
 
+\bibliographystyle{ieeetr}
+\bibliography{references}
 %\section*{References}
-\begin{thebibliography}{9}
+%\begin{thebibliography}{9}
 
-\bibitem{jaindubes88}
-    A. K. Jain, R. C. Dubes,
-    \emph{Algorithms for Clustering Data,}
-    Prentice Hall,
-    Englewood Cliffs, NJ,
-    1988.
+%\bibitem{jaindubes88}
+    %A. K. Jain, R. C. Dubes,
+    %\emph{Algorithms for Clustering Data,}
+    %Prentice Hall,
+    %Englewood Cliffs, NJ,
+    %1988.
 
-\bibitem{jenssen05}
-    R. Jenssen,
-    \emph{An Information Theoretic Approach to Machine Learning},
-    2005
+%\bibitem{jenssen05}
+    %R. Jenssen,
+    %\emph{An Information Theoretic Approach to Machine Learning},
+    %2005
 
-\bibitem{kononenko07}
-    I. Kononenko,
-    \emph{Machine Learning and Data Mining: Introduction to Principles and Algorithms},
-    Horwood,
-    2007
+%\bibitem{kononenko07}
+    %I. Kononenko,
+    %\emph{Machine Learning and Data Mining: Introduction to Principles and Algorithms},
+    %Horwood,
+    %2007
 
-\end{thebibliography}
+%\bibitem{vmeasure}
+    %A. Rosenberg, J. Hirschberg,
+    %\emph{V-Measure: A Conditional Entropy-Based External Cluster Evaluation Measure},
+    %In Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning Prague (2007), pp. 410-420.
+
+%\bibitem{ecm}
+    %Q. Song, N. Kasabov,
+    %\emph{ECM - A Novel On-line, Evolving Clustering Method and Its Applications},
+
+%\end{thebibliography}
 
 \end{document}
