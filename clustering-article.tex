@@ -270,10 +270,10 @@ or max number of iterations has been reached. It can be summarized as \cite{jain
   %$m_i^{(t+1)} = \frac{1}{|S_i^{(t)}|} \displaystyle\sum\limits_{x_j \in S_i^{(t)}}{x_j}$
 %\end{itemize}
 
-There are two common ways to select the initial centroids: random seed and random partition.
-The random seed method randomly chooses k observations from the dataset
+There are two common ways of selecting the initial centroids: random seed and random partition.
+The random seed method randomly chooses $k$ observations from the dataset
 and uses these as the initial means. Random partition
-assigns each example into one of the k clusters randomly.
+assigns each example into one of the $k$ clusters randomly.
 The random seed method tends to spread the initial means out, while random partition
 places all of them close to the center of the dataset.
 
@@ -282,12 +282,12 @@ procedure to initialize the cluster centers before proceeding with the standard 
 optimization iterations. With the k-means++ initialization, the algorithm is guaranteed
 to find a solution that is $O(\log k)$ competitive to the optimal k-means solution.
 Although this initial selection takes extra time, it speeds up the convergence and 
-therefore actually lowers overall computation time.
+therefore actually lowers the overall computation time.
 
 Although it can be proved that the KMC algorithm will always terminate (converge),
 it does not necessarily find the most optimal configuration,
 corresponding to the global objective function minimum. The algorithm is also sensitive
-to the initial selected cluster centroids but it can be run multiple times to reduce this effect.
+to the initial selected cluster centroids, but it can be run multiple times to reduce this effect.
 
 Another interesting fact is that, in the worst case, k-means can be very slow to converge:
 in particular it has been shown that there exist certain datasets,
@@ -828,49 +828,26 @@ DBSCAN noise detection spectral clustering did better.
 
 \section{Conclusions}
 
-As we can see results show us that spectral clustering is one of the best algorithm. Its followed by
-DBSCAN which has advantage of detecting noise data. Other algorithms did well for simple dataset
-but not for more complex ones.
+Clustering is a broad topic with many different subproblems and approaches of solving them.
+No single clustering algorithm satisfies all possible requirements data analysts might have.
+We can provide some guidelines though.
 
-Even though DBSCAN and spectral clustering showed as the best algorithms overall every task of
-clustering should be considered as a problem of its own. Research should be done which of algorithms
-really fits it best and choose one accordingly.
+Spectral clustering did particularly well in our tests, followed closely by
+DBSCAN which has the advantage (or disadvantage, depending on the problem) of detecting noise in data.
+Other algorithms did well in simple cases but not in more complex ones.
+
+However, spectral clustering was considerably slower (at least the implementation we used was)
+than other approaches. k-means was the fastest (should not be surprising). Results of ECMC
+were similar to k-means. We didn't use a dataset that would show where GMM excels.
+
+%Even though DBSCAN and spectral clustering showed as the best algorithms overall every task of
+%clustering should be considered as a problem of its own. Research should be done which of algorithms
+%really fits it best and choose one accordingly.
 
 \section*{Acknowledgements}
-The authors wish to thank the mentor for all his help and suggestions.
+The authors would like to thank the mentor for his help and suggestions.
 
 \bibliographystyle{ieeetr}
 \bibliography{references}
-%\section*{References}
-%\begin{thebibliography}{9}
-
-%\bibitem{jaindubes88}
-    %A. K. Jain, R. C. Dubes,
-    %\emph{Algorithms for Clustering Data,}
-    %Prentice Hall,
-    %Englewood Cliffs, NJ,
-    %1988.
-
-%\bibitem{jenssen05}
-    %R. Jenssen,
-    %\emph{An Information Theoretic Approach to Machine Learning},
-    %2005
-
-%\bibitem{kononenko07}
-    %I. Kononenko,
-    %\emph{Machine Learning and Data Mining: Introduction to Principles and Algorithms},
-    %Horwood,
-    %2007
-
-%\bibitem{vmeasure}
-    %A. Rosenberg, J. Hirschberg,
-    %\emph{V-Measure: A Conditional Entropy-Based External Cluster Evaluation Measure},
-    %In Proceedings of the 2007 Joint Conference on Empirical Methods in Natural Language Processing and Computational Natural Language Learning Prague (2007), pp. 410-420.
-
-%\bibitem{ecm}
-    %Q. Song, N. Kasabov,
-    %\emph{ECM - A Novel On-line, Evolving Clustering Method and Its Applications},
-
-%\end{thebibliography}
 
 \end{document}
