@@ -1,0 +1,5 @@
+library(kernlab)
+data <- data.matrix(read.table('../datasets/red-blue-clusters.tab', skip=3))
+sc <- specc(data, centers=2)
+plot(data, col=sc)
+write(sc, '../datasets/red-blue-output')
