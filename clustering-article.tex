@@ -17,7 +17,7 @@
 
 \begin{document}
 \title{Clustering Algorithms Overview}
-\author{Mentor, Primož, Matej}
+\author{Matej Pičulin, Primož Bajželj, Matej Drame}
 %\affil{Fakulteta za računalništvo in informatiko}  
 \author{
 	\IEEEauthorblockN{Mater Drame, Primož Bajželj \\ Mentor: Matej Pičulin}
@@ -610,13 +610,15 @@ elongated and highly irregular clusters.
 \section{Results}
 We used scikit-learn machine learning library written in Python \cite{scikit}. TODO
 
+
+
 \subsection{Datasets}
 
 For each algorithm comparison on three different artificial datasets was done. The first dataset, shown in picture \ref{dataset1},
 is comprised of two linearly separable clusters. The second one, shown in picture \ref{dataset2}, is not linearly separable
-which makes it difficult for some algorithms to cluster it correctly. In this second example one
+which makes it difficult for some algorithms to cluster it correctly. In this second dataset one
 whole cluster is inside another cluster. The last dataset's shape resembles two half-moons. This dataset is
-not linearly seperable either. We can see it on figure \ref{dataset3}.
+not linearly seperable either. Presented on figure \ref{dataset3}.
 
 \begin{figure}[th]
 \centering
@@ -644,8 +646,8 @@ not linearly seperable either. We can see it on figure \ref{dataset3}.
 
 \subsection{Red-Blue}
 
-As this was a simple problem all algorithms proved to be successful as we can see in table \ref{redblueresults}. In this
-dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as well.
+This was a simple problem and all algorithms were successful as we can see in table \ref{redblueresults}.
+DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting noise as well.
 
 \begin{figure}[th]
 \centering
@@ -701,9 +703,11 @@ dataset the worst was DBSCAN. The reason is that DBSCAN is detecting noise as we
 \end{table}
 
 \subsection{Nested circle}
-This dataset as described is more difficult to be clustered and the outcome are bad results for most of
-the algorithms. As we can see in table \ref{circleweirdresults} only DBSCAN and spectral clustering
-managed to get good results.
+This dataset is actually the most difficult one in our comparison. k-means, ECMC and GMM
+fail to correctly cluster the data. On the other hand, this dataset is easy for DBSCAN and spectral clustering.
+%the outcome are bad results for most of
+%the algorithms. As we can see in table \ref{circleweirdresults} the only algorithm that managed
+%to get good result is DBSCAN.
 
 \begin{figure}[th]
 \centering
@@ -762,7 +766,7 @@ managed to get good results.
 \subsection{Half-moons}
 
 This dataset showed also as difficult, however algorithms still did better here as in ''nested circle'' dataset. Again
-DBSCAN and spectral clustering were the best as we can see in table \ref{halfmoonsresults}. However, because of
+DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmoonsresults}. However, because of
 DBSCAN noise detection spectral clustering did better.
 
 \begin{figure}[th]
