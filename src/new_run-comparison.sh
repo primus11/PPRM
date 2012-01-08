@@ -19,7 +19,7 @@ echo circle-weird >> result
 
 
 echo "Running ECMC clustering on circle-weird.tab..."
-python new_ECMC.py ../datasets/circle-weird.tab 0.2
+python new_ECMC.py ../datasets/circle-weird.tab 0.27
 
 echo "Running GMM clustering on circle-weird.tab..."
 python new_GMM.py ../datasets/circle-weird.tab 2
@@ -37,7 +37,7 @@ echo half-moons >> result
 
 
 echo "Running ECMC clustering on half-moons.tab..."
-python new_ECMC.py ../datasets/half-moons.tab 0.2
+python new_ECMC.py ../datasets/half-moons.tab 0.33
 
 echo "Running GMM clustering on half-moons.tab..."
 python new_GMM.py ../datasets/half-moons.tab 2
