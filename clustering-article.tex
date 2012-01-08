@@ -22,9 +22,9 @@
 \maketitle
 
 \begin{abstract}
-Have you ever wondered how is it possible that there is advertisement on a web page you
-are intersted in? Or how You-tube is offering you videos you are likely searching for? 
-One of the techiques used is clustering. In this paper a few of the most known
+Have you ever wondered how it is possible that there is advertisement on a web page you
+are interested in? Or how YouTube is offering you videos you are likely to search for? 
+One of the techniques used is clustering. In this paper a few of the most known
 algorithms are researched and compared to each other.
 \end{abstract}
 
@@ -110,7 +110,7 @@ but don't include clustering based on information theory or other progress in th
 In this article we discuss several clustering algorithms, from the most intuitive and most commonly
 used k-means through more advanced Expectation Maximization and density-based algorithms
 to some newer developments such as spectral clustering and information theoretic clustering.
-We also experimentaly compare these algorithms.
+We also experimentally compare these algorithms.
 
 \subsection{Determining the number of clusters in a dataset}
 A major problem in clustering is the fact that many clustering algorithms require the
@@ -319,7 +319,7 @@ with radius 0 and center on the example itself. For every new example $x_i$ thes
 	\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
 	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster
 		is created and algorithm continues at step 1.
-	\item Cluster's center, with minumum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
+	\item Cluster's center, with minimum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
 		center's position is on the line from the old center to the example $x_i$ so that distance from the new center to the example $x_i$ is
 		equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
 \end{enumerate}
@@ -346,7 +346,7 @@ Afterwards, constrained optimization can be applied to minimize the function \re
 \begin{enumerate}
 	\item Change the membership of each example to a cluster that has the smallest distance to its center.
 	\item Calculate new cluster center to satisfy changes.
-	\item Algorithm terminates if enough iterations occured or the value of \ref{ECMJ} changed less than a certain amount.
+	\item Algorithm terminates if enough iterations occurred or the value of \ref{ECMJ} changed less than a certain amount.
 		Otherwise return to step 1.
 \end{enumerate}
 
@@ -418,10 +418,10 @@ which are essential. In step E we calculate the values of hidden variables $s_i$
 on the values of hidden attributes. Steps to follow:
 
 \begin{enumerate}
-	\item All parameters, means, convariances and mixing coefficients, have to be set and the initial value of log-likelihood
+	\item All parameters, means, covariances and mixing coefficients, have to be set and the initial value of log-likelihood
 		function has to be evaluated.
 	\item Values of $r_ik$ should be calculated based on set parameters.
-	\item New values of means, covariances and mixing coeficients should be evaluated with $r_{ik}$ in step 2.
+	\item New values of means, covariances and mixing coefficients should be evaluated with $r_{ik}$ in step 2.
 	\item Log-likelihood function should be calculated again and checked for convergence. If threshold convergence
 		is not reached we continue at step 2.
 \end{enumerate}
@@ -430,7 +430,7 @@ on the values of hidden attributes. Steps to follow:
 \subsection{Density-based clustering}
 This is a group of algorithms which define clusters as areas of higher density than the rest
 of the dataset. Examples in sparse areas in between clusters are considered noise. The notion
-of noise actually particulary sets these algorithms apart from others.
+of noise actually particularly sets these algorithms apart from others.
 
 The best known density-based clustering method is DBSCAN, proposed by \cite{ester96}.
 DBSCAN searches neighborhoods (according to some distance measure) of examples,
@@ -758,7 +758,7 @@ to get good result is DBSCAN.
 
 \subsection{Half-moons}
 
-This dataset showed also as difficult, however algorithms still did better here as in ''wierd circle'' dataset. Again
+This dataset showed also as difficult, however algorithms still did better here as in ''nested circle'' dataset. Again
 the best one was DBSCAN as we can see in table \ref{halfmoonsresults}. 
 
 \begin{figure}[th]
@@ -818,7 +818,7 @@ the best one was DBSCAN as we can see in table \ref{halfmoonsresults}.
 \section{Conclusions}
 
 As we can see results show us that DBSCAN is one of the best algorithm. The only place others
-could beat it was with the simpliest datasets where it's advantage of detecting noise really showed
+could beat it was with the simplest datasets where it's advantage of detecting noise really showed
 as disadvantage.
 
 Even though DBSCAN showed as the best algorithm overall every task of clustering should be
