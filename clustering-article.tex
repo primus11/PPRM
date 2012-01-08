@@ -43,7 +43,7 @@ The problem of clustering has been addressed in many contexts and by researchers
 broad appeal and is useful as one of the steps in exploratory data analysis (data mining). The importance
 and interdisciplinary nature of clustering is evident through its vast literature and rich history, even
 in disciplines such as biology, psychiatry, psychology, archeology, geology, geography and
-marketing [Jain and Dubes, 1988].
+marketing \cite{jaindubes88}.%[Jain and Dubes, 1988].
 
 Clustering is recognized as an important tool in areas such as image segmentation,
 speech recognition, signal compression, medical research, document storage and retrieval,
@@ -96,12 +96,12 @@ Due to ill-posed nature of clustering (the goal is to find a \textit{reasonable}
 no clustering technique is universally applicable, resulting in tens, if not hundreds of various algorithms
 that differ significantly in their notion of what constitutes a cluster or how to find them.
 Figure ~\ref{taxonomy} shows a number of different clustering methods. This taxonomy was given
-by [Jenssen, 2005].
+by \cite{jenssen05}.%[Jenssen, 2005].
 
 The hierarchical clustering algorithms produce $n$ levels of groupings, where $n$ is
 the number of examples in data (sometimes called data patterns, feature vectors or observations). These
 methods yield a dendogram which represents the similarity levels at which groupings change.
-Reader can learn more about these approaches in [Kononenko, 2007]. The partitional
+Reader can learn more about these approaches in \cite{kononenko07}. The partitional
 clustering algorithms produce a single partition of the data. They often need the number of clusters
 to be specified in advance but are usually more computationally efficient.
 
@@ -832,6 +832,27 @@ really fits it best.
 \section*{Acknowledgements}
 The authors wish to thank the mentor for all his help and suggestions.
 
-\section*{References}
+%\section*{References}
+\begin{thebibliography}{9}
+
+\bibitem{jaindubes88}
+    A. K. Jain, R. C. Dubes,
+    \emph{Algorithms for Clustering Data,}
+    Prentice Hall,
+    Englewood Cliffs, NJ,
+    1988.
+
+\bibitem{jenssen05}
+    R. Jenssen,
+    \emph{An Information Theoretic Approach to Machine Learning},
+    2005
+
+\bibitem{kononenko07}
+    I. Kononenko,
+    \emph{Machine Learning and Data Mining: Introduction to Principles and Algorithms},
+    Horwood,
+    2007
+
+\end{thebibliography}
 
 \end{document}
