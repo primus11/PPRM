@@ -433,7 +433,7 @@ This is a group of algorithms which define clusters as areas of higher density t
 of the dataset. Examples in sparse areas in between clusters are considered noise. The notion
 of noise actually particulary sets these algorithms apart from others.
 
-The best known density-based clustering method is DBSCAN, proposed by [Ester et al., 1996].
+The best known density-based clustering method is DBSCAN, proposed by \cite{ester96}.
 DBSCAN searches neighborhoods (according to some distance measure) of examples,
 counting the neighbors (to some distance). If a
 particular neighborhood contains sufficiently many examples, the entire neighborhood is
@@ -453,7 +453,7 @@ the neighborhood search distance too low might result in classifying examples as
 rather than aggregating them into a cluster). It also fails on overlapping clusters such as
 those in mixtures of Gaussians (where EM clustering is superior).
 
-Hierarchical clustering algorithm Chameleon [Karypis, 1999] builds a list of the nearest
+Hierarchical clustering algorithm Chameleon \cite{karypis99} builds a list of the nearest
 neighbors of each example, constructs a weighted similarity graph (described in Spectral clustering)
 using this nearest neighbor list, and then partitions the graph to obtain cluster fragments
 which are finally merged into clusters. It is similar to DBSCAN in that it finds a small subsets
@@ -461,16 +461,16 @@ of examples and builds clusters around them. Chameleon can handle clusters of va
 partly because of its nearest neighbor approach, which tends to work better than distance measures,
 especially in high dimensional datasets.
 
-Another hierarchical algorithm CURE [Guha, 1998] represents each cluster by a certain
+Another hierarchical algorithm CURE \cite{guha98} represents each cluster by a certain
 number of examples selected from the cluster and translated toward the mean of the cluster
 by a specified amount (this helps with outliers). The algorithm merges clusters with
 the closest pair of representative examples at each step. Using more than one representative
 example per cluster allows CURE to adjust to non-spherical shapes of the clusters.
-CURE also has problems with clusters of different densities [Ertoz, ONCE]. Its running
+CURE also has problems with clusters of different densities \cite{ertoz03}. Its running
 time is $O(n^2)$ but the authors of the algorithm used several enhancements such as
 random sampling and partitioning to make it more practical.
 
-The SNN algorithm [Ertoz, 2003] differs from DBSCAN mainly in that it defines the similarity
+The SNN algorithm \cite{ertoz03} differs from DBSCAN mainly in that it defines the similarity
 between two examples in terms of how many nearest neighbors the two examples share.
 Using this new definition of similarity, it eliminates noise and problems with varying density.
 It also uses the concept of representative examples which handles problems with shape
@@ -489,7 +489,7 @@ eigenvalues and eigenvectors (called spectrum of a matrix, hence the name) of th
 a measure of similarity between examples) of the data to perform dimensionality reduction for
 clustering in low-dimensional space. It is not obvious to see why it works at all
 and we will not dive into details in this article, instead we will try to give a high level overview.
-An intuitive explanation from three different theoretic backgrounds is given by [Luxburg, 2007].
+An intuitive explanation from three different theoretic backgrounds is given by \cite{luxburg07}.
 
 Similarity graphs and graph Laplacians are the key tools in spectral clustering.
 Similarity graph is constructed from data by interpreting examples as vertices and similarities
@@ -503,7 +503,7 @@ There are several ways of building these graphs:
     low might fail to connect sparse clusters, whereas setting it too high might unnecessarily connect many
     examples (different scales problem).
     \item $k$-nearest neighbor graph: Each example is connected with its nearest $k$ examples. Recommended
-    by [Luxburg, 2007].
+    by \cite{luxburg07}.
     \item Fully connected graph: Simply connecting all examples with each other. Results in a dense matrix.
 \end{itemize}
 
@@ -515,7 +515,7 @@ clustering, e.g. the multiplicity of the eigenvalue 0 equals the number of conne
 [Mohar, 1991, 1997].
 
 There are several variants of spectral clustering algorithms. We will describe only unnormalized version
-as presented in [Luxburg, 2007]. Given similarity matrix $S \in \mathbb{R}^{n \times n}$ and the number
+as presented in \cite{luxburg07}. Given similarity matrix $S \in \mathbb{R}^{n \times n}$ and the number
 of clusters to construct $k$:
 
 % TODO: refer to authors of different variants
