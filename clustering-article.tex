@@ -244,7 +244,7 @@ algorithm was first proposed by Stuart Lloyd in 1957 and published later in 1982
 KMC requires as input the number of cluster we want to find in data ($k$).
 The algorithm iteratively refines clusters' locations (guided by a cost function),
 until no more refinements are possible (clusters do not change anymore)
-or max number of iterations has been reached. It can be summarized as [Jain et al., 2000]:
+or max number of iterations has been reached. It can be summarized as \cite{jain00}:
 
 \begin{enumerate}
     \item Select an initial partition with k clusters.
@@ -578,11 +578,11 @@ divergence measure (statistical distance). The measure between two cluster pdf's
 D_{CS}(p, q) = -\log \frac{\int p(x)q(x)dx}{\sqrt{\int p^2(x)dx \int q^2(x)dx}}
 \end{equation}
 
-This divergence can be regarded as an approximation of Kullback-Leibler divergence between two pdf's \cite{renyi03}.
+This divergence can be regarded as an approximation of Kullback-Leibler divergence between two pdf's \cite{jenssen03}.
 An intuitive reasoning behind this measure is that in order to optimize $D_{CS}$, the entropy of each individual cluster must
 be small, while at the same time the entropy across the clusters must be large.
-Probability density functions can be estimated by a sample-based estimator. [Jenssen, 2010] used a kernel
-density estimator developed by [Parzen, 1962] (Parzen-Rosenblatt window technique). This introduces a problem of
+Probability density functions can be estimated by a sample-based estimator. Jenssen \cite{jenssen05} used a kernel
+density estimator developed by \cite{parzen62} (Parzen-Rosenblatt window technique). This introduces a problem of
 choosing the kernel size (this is a problem of all kernel-based methods).
 
 An early idea to maximize the Cauchy-Schwarz pdf divergence was to seed a number
@@ -591,7 +591,7 @@ in a way that maximizes the divergence) until all examples have been clustered, 
 reassign the members of the worst cluster (decided again by the divergence), reducing the number of clusters. 
 The reassigning step is repeated until the desired number of clusters is reached.
 
-[Jenssen et at., 2007] derived an optimization procedure based on the technique of Lagrange multipliers.
+Jenssen et at. \cite{jenssen07} derived an optimization procedure based on the technique of Lagrange multipliers.
 This resulted in an efficient gradient descent-based clustering algorithm which incorporated kernel annealing
 as an optimization strategy. The kernel size may start large during the initial iterations, but then annealed (reduced)
 in following iterations. The annealing procedure can also help the algorithm to cope with different data scales,
