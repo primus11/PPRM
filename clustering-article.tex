@@ -512,7 +512,7 @@ There are several ways of building these graphs:
 Graph Laplacian matrices are studied in Spectral graph theory. They encode graph adjacency information
 as well as information about degrees of vertices and have some interesting properties used in spectral
 clustering, e.g. the multiplicity of the eigenvalue 0 equals the number of connected components in the graph
-[Mohar, 1991, 1997].
+\cite{mohar91,mohar97}.
 
 There are several variants of spectral clustering algorithms. We will describe only unnormalized version
 as presented in \cite{luxburg07}. Given similarity matrix $S \in \mathbb{R}^{n \times n}$ and the number
@@ -545,7 +545,7 @@ be quite unstable under different choices of the parameters for the neighborhood
 
 Spectral clustering is a newer line of research in otherwise surprisingly old branch of clustering
 approaches called graph-theoretic clustering. The best known graph-theoretic algorithm is
-based on construction of the minimal spanning tree of the data [Zahn, 1971], and then deleting
+based on construction of the minimal spanning tree of the data \cite{zahn71}, and then deleting
 the edges with the largest lengths to generate clusters. For an appropriately constructed minimal
 spanning tree, this algorithm can handle a wide variety of data structures.
 
@@ -554,22 +554,22 @@ KMC and similar are examples of so-called \textit{parametric} methods of cluster
 methods assume some knowledge about clusters' structure, which makes them less
 suitable for many use cases. KMC performs badly when clusters are not hyperelliptical
 because it implicitly assumes Gaussian cluster distributions. In fact, any clustering method
-that utilizes second order data statistics can produce only convex clusters [Jain et al., 2000].
+that utilizes second order data statistics can produce only convex clusters \cite{jain00}.
 
 Information theory has been successfully used in clustering by several researchers in recent years.
 Various information-theoretic clustering metrics, such as entropy, mutual information and
 Kullback-Leibler divergence were researched.
 
-[Faivishevsky \& Goldberg, 2010] suggested an algorithm based on maximizing the mutual information
+Faivishevsky and Goldberg \cite{faivishevsky10} suggested an algorithm based on maximizing the mutual information
 between examples and clusters. Their method does not impose any parametric model on the cluster
 distribution because they used a non-parametric estimation of the average cluster entropies (MeanNN,
-by the same researchers, 2009). Their algorithm starts with random partitioning and continues
+by the same researchers \cite{faivishevsky09}). Their algorithm starts with random partitioning and continues
 with reassigning examples between clusters, trying to improve the cost function they developed,
 until improvements become sufficiently small. Algorithm's overall computational complexity is
 $O(n^2)$, but it is able to cluster non-convex datasets.
 
-Another group of algorithms was developed by [Jenssen et. al, 2005, 2010]. They combined
-the Renyi entropy [Renyi, 1976], which is an information theoretic measure of uncertainty of a random variable,
+Another group of algorithms was developed by \cite{jenssen03,jenssen05}. They combined
+the Renyi entropy \cite{renyi61}, which is an information theoretic measure of uncertainty of a random variable,
 and the well known Cauchy-Schwarz inequality, forming Cauchy-Schwarz pdf (probability density function)
 divergence measure (statistical distance). The measure between two cluster pdf's $p(x)$ and $q(x)$ is defined as:
 
@@ -578,7 +578,7 @@ divergence measure (statistical distance). The measure between two cluster pdf's
 D_{CS}(p, q) = -\log \frac{\int p(x)q(x)dx}{\sqrt{\int p^2(x)dx \int q^2(x)dx}}
 \end{equation}
 
-This divergence can be regarded as an approximation of Kullback-Leibler divergence between two pdf's [Jenssen, 2009].
+This divergence can be regarded as an approximation of Kullback-Leibler divergence between two pdf's \cite{renyi03}.
 An intuitive reasoning behind this measure is that in order to optimize $D_{CS}$, the entropy of each individual cluster must
 be small, while at the same time the entropy across the clusters must be large.
 Probability density functions can be estimated by a sample-based estimator. [Jenssen, 2010] used a kernel
