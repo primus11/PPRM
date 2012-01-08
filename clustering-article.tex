@@ -19,6 +19,10 @@
 \title{Clustering Algorithms Overview}
 \author{Matej Pičulin, Primož Bajželj, Matej Drame}
 %\affil{Fakulteta za računalništvo in informatiko}  
+\author{
+	\IEEEauthorblockN{Mater Drame, Primož Bajželj \\ Mentor: Matej Pičulin}
+	\IEEEauthorblockA{Faculty of Computer and Information Science, Ljubljana}
+}
 \maketitle
 
 \begin{abstract}
@@ -317,9 +321,9 @@ with radius 0 and center on the example itself. For every new example $x_i$ thes
 \begin{enumerate}
 	\item Distance from $x_i$ to every cluster center is calculated as shown in equation \ref{ECMdist}.
 	\item If minimum distance found is less than or equal to cluster radius, $x_i$ belongs to cluster and algorithm returns to step 1.
-	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum s is more than $2*D_{thr}$ a new cluster
+	\item For every cluster s is calculated as shown in equation \ref{ECMequ1}. If minimum $s$ is more than $2*D_{thr}$ a new cluster
 		is created and algorithm continues at step 1.
-	\item Cluster's center, with minimum s calculated, is moved and radius increased. New radius is calculated as $s/2$ and
+	\item Cluster's center, with minimum $s$ calculated, is moved and radius increased. New radius is calculated as $s/2$ and
 		center's position is on the line from the old center to the example $x_i$ so that distance from the new center to the example $x_i$ is
 		equal to $s/2$ as shown in equation \ref{ECMequ2} and \ref{ECMequ3}.
 \end{enumerate}
@@ -690,17 +694,16 @@ DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting no
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
-	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
+	\bf Algorithm & \bf ARI & \bf Homogeneity & \bf Completeness & \bf V-measure\\ \hline
 	
 	ECMC & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 	GMM & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
-	Spectral & 0.998 & 0.989 & 1.000 & 0.995 \\ \hline
+	Spectral & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 	k-means & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 	DBSCAN & 0.996 & 0.981 & 1.000 & 0.990 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
-
 
 \subsection{Nested circle}
 This dataset is actually the most difficult one in our comparison. k-means, ECMC and GMM
@@ -751,11 +754,11 @@ fail to correctly cluster the data. On the other hand, this dataset is easy for 
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
-	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
+	\bf Algorithm & \bf ARI & \bf Homogeneity & \bf Completeness & \bf V-measure\\ \hline
 	
 	ECMC & 0.012 & 0.011 & 0.013 & 0.012 \\ \hline
-	GMM & 0.011 & 0.016 & 0.019 & 0.017 \\ \hline
-	Spectral & 0.002 & 0.031 & 0.036 & 0.033 \\ \hline
+	GMM & 0.054 & 0.136 & 0.158 & 0.146 \\ \hline
+	Spectral & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 	k-means & 0.013 & 0.012 & 0.014 & 0.013 \\ \hline
 	DBSCAN & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 \end{tabular}
@@ -765,8 +768,9 @@ fail to correctly cluster the data. On the other hand, this dataset is easy for 
 
 \subsection{Half-moons}
 
-This dataset showed also as difficult, but algorithms still did better here than in ''nested circle'' dataset. Again,
-DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmoonsresults}. 
+This dataset showed also as difficult, however algorithms still did better here as in ''nested circle'' dataset. Again
+DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmoonsresults}. However, because of
+DBSCAN noise detection spectral clustering did better.
 
 \begin{figure}[th]
 \centering
@@ -810,13 +814,13 @@ DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmo
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{ |c|c|c|c|c| }
 \hline
-	Algorithm & ARI & Homogeneity & Completeness & V-measure\\ \hline
+	\bf Algorithm & \bf ARI & \bf Homogeneity & \bf Completeness & \bf V-measure\\ \hline
 	
 	ECMC & 0.329 & 0.258 & 0.262 & 0.260 \\ \hline
-	GMM & 0.325 & 0.243 & 0.239 & 0.241 \\ \hline
-	Spectral & 0.259 & 0.202 & 0.207 & 0.204 \\ \hline
+	GMM & 0.287 & 0.211 & 0.209 & 0.210 \\ \hline
+	Spectral & 1.000 & 1.000 & 1.000 & 1.000 \\ \hline
 	k-means & 0.343 & 0.268 & 0.273 & 0.271 \\ \hline
-	DBSCAN & 0.967 & 0.890 & 0.972 & 0.929 \\ \hline
+	DBSCAN & 0.970 & 0.896 & 0.978 & 0.935 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -824,13 +828,13 @@ DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmo
 
 \section{Conclusions}
 
-As we can see results show us that DBSCAN is one of the best algorithm. The only place others
-could beat it was with the simplest datasets where it's advantage of detecting noise really showed
-as disadvantage.
+As we can see results show us that spectral clustering is one of the best algorithm. Its followed by
+DBSCAN which has advantage of detecting noise data. Other algorithms did well for simple dataset
+but not for more complex ones.
 
-Even though DBSCAN showed as the best algorithm overall every task of clustering should be
-considered as a problem of it's own. Research should be done which of algorithms
-really fits it best.
+Even though DBSCAN and spectral clustering showed as the best algorithms overall every task of
+clustering should be considered as a problem of its own. Research should be done which of algorithms
+really fits it best and choose one accordingly.
 
 \section*{Acknowledgements}
 The authors wish to thank the mentor for all his help and suggestions.
