@@ -105,13 +105,12 @@ Reader can learn more about these approaches in \cite{kononenko07}. The partitio
 clustering algorithms produce a single partition of the data. They often need the number of clusters
 to be specified in advance but are usually more computationally efficient.
 
-% TODO: related work (Jain)
-
+Jain et al. \cite{jain99} provide a large and valuable overview of clustering methods,
+but don't include clustering based on information theory or other progress in the last decade.
 In this article we discuss several clustering algorithms, from the most intuitive and most commonly
 used k-means through more advanced Expectation Maximization and density-based algorithms
 to some newer developments such as spectral clustering and information theoretic clustering.
-
-% TODO: maybe structure of the article?
+We also experimentaly compare these algorithms.
 
 \subsection{Determining the number of clusters in a dataset}
 A major problem in clustering is the fact that many clustering algorithms require the
@@ -155,7 +154,7 @@ that was clustered. This evaluation is biased towards algorithms that use the sa
 include Davies-Boulding index and Dunn index. In external evaluation, clustering results are evaluated based on data
 that was not used for clustering, such as known class labels. This usually requires human-created datasets. Rand measure,
 Adjusted Rand measure (or index), F-measure, Jaccard index, Fowlkes-Mallows index and Mutual Information are examples
-of external evaluation methods. We used ARI, homogeneity and completeness:
+of external evaluation methods. We use ARI, homogeneity and completeness:
 
 \subsection{Adjusted Rand Index}
 Rand Index (RI) is a measure of similarity between data clusterings. It counts
