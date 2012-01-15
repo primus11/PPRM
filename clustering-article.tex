@@ -110,7 +110,7 @@ clustering algorithms produce a single partition of the data. They often need th
 to be specified in advance but are usually more computationally efficient.
 
 Jain et al. \cite{jain99} provide a large and valuable overview of clustering methods,
-but don't include clustering based on information theory or other progress in the last decade.
+but don't include clustering based on information theory or other progress of the last decade.
 In this article we discuss several clustering algorithms, from the most intuitive and most commonly
 used k-means through more advanced Expectation Maximization and density-based algorithms
 to some newer developments such as spectral clustering and information theoretic clustering.
@@ -120,11 +120,11 @@ We also experimentally compare these algorithms.
 A major problem in clustering is the fact that many clustering algorithms require the
 number of clusters to find in a dataset as input (this quantity is usually denoted $k$).
 Several algorithms such as those based on density do not require the specification of this
-parameter and hierarchical clustering algorithms essentially output clusterings (a clustering
+parameter. Hierarchical clustering algorithms essentially output clusterings (a clustering
 is simply a set of clusters, usually containing all the data)
-for all possible values of this parameter (somewhat avoiding the problem).
+for all possible values of this parameter, somewhat avoiding the problem.
 
-The average silhouette of the data is a useful criterion for assessing the number of clusters in data.
+The average silhouette of the data is a useful criterion for assessing the number of clusters in the data.
 The silhouette of an example is a measure of how well matched it is to the cluster it is assigned
 and how loosely it is matched to the neighboring cluster. The average silhouette of a cluster
 is therefore a measure of how tightly grouped all the data in the cluster are and the average silhouette of
@@ -134,7 +134,7 @@ the average silhouette.
 
 The Elbow method looks at the percentage of variance (the ratio of the between-group variance
 to the total variance) explained as a function of the number of clusters.
-The number of clusters should be chosen so that adding another cluster doesn't give much better modelling
+The number of clusters should be chosen so that adding another cluster doesn't give much better modeling
 of the data. For example, when clustering with the k-means algorithm, we can compute the sum of square (SS)
 distances within clusters as well as the total SS, and look for a large gap in percentage of variance
 from one k to the next k+1.
@@ -621,7 +621,7 @@ For each algorithm comparison on three different artificial datasets was done. T
 is comprised of two linearly separable clusters. The second one, shown in figure \ref{dataset2}, is not linearly separable
 which makes it difficult for some algorithms to cluster it correctly. In this second dataset one
 whole cluster is inside another cluster. The last dataset's shape resembles two half-moons. This dataset is
-not linearly seperable either. Presented on figure \ref{dataset3}. Different colors represent different clusters.
+not linearly separable either. Presented on figure \ref{dataset3}. Different colors represent different clusters.
 Note that figures \ref{dataset1}, \ref{dataset2} and \ref{dataset3} display the desired clustering result.
 
 \begin{figure}[h]
