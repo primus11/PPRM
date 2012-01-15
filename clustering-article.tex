@@ -309,8 +309,8 @@ $D_{thr}$ is by default the algorithm's input, unlike to some other algorithms w
 input. $D_{thr}$ does affect the number of clusters, but not directly. Therefore, when comparing ECM algorithm to
 others, we have to be aware of their inputs.
 
-The algorithm takes examples from a data stream and proceeds with one of three actions: updating corresponding cluster radius, changing
-cluster center or creating a new cluster.
+The algorithm takes examples from a data stream and proceeds with one of three actions: updating the corresponding cluster radius, changing
+the cluster center or creating a new cluster.
 %every new data cluster's radius can be updated or it's center changed or
 %new cluster can be created.
 At some point, usually when cluster radius reaches threshold value $D_{thr}$, cluster radius
@@ -433,8 +433,8 @@ on the values of hidden attributes. Steps to follow:
 
 \subsection{Density-based clustering}
 This is a group of algorithms which define clusters as areas of higher density than the rest
-of the dataset. Examples in sparse areas in between clusters are considered noise. The notion
-of noise actually particularly sets these algorithms apart from others.
+of the dataset. Examples in sparse areas between clusters are considered noise. The notion
+of noise actually particularly sets these algorithms apart from the others.
 
 The best known density-based clustering method is DBSCAN, proposed by \cite{ester96}.
 DBSCAN searches neighborhoods (according to some distance measure) of examples,
