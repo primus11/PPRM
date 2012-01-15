@@ -611,7 +611,7 @@ elongated and highly irregular clusters.
 To experimentally compare algorithms and see whether or not we can confirm
 their theoretical properties, their advantages and disadvantages, we set up a test.
 We used \textit{scikit-learn} machine learning library written in Python \cite{scikit}
-to test k-means, GMM and DBSCAN. We used our own implementation of ECMC and a \textit{R} library
+to test k-means, GMM and DBSCAN. We used our own implementation of ECMC and an \textit{R} library
 called \textit{kernlab} \cite{kernlab} provided an implementation of Spectral clustering.
 
 
@@ -621,7 +621,8 @@ For each algorithm comparison on three different artificial datasets was done. T
 is comprised of two linearly separable clusters. The second one, shown in figure \ref{dataset2}, is not linearly separable
 which makes it difficult for some algorithms to cluster it correctly. In this second dataset one
 whole cluster is inside another cluster. The last dataset's shape resembles two half-moons. This dataset is
-not linearly seperable either. Presented on figure \ref{dataset3}.
+not linearly seperable either. Presented on figure \ref{dataset3}. Different colors represent different clusters.
+Note that figures \ref{dataset1}, \ref{dataset2} and \ref{dataset3} display the desired clustering result.
 
 \begin{figure}[h]
 \centering
@@ -653,7 +654,7 @@ not linearly seperable either. Presented on figure \ref{dataset3}.
 \subsection{Red-Blue}
 
 This was a simple problem and all algorithms were successful as we can see in table \ref{redblueresults}.
-DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting noise as well.
+DBSCAN performed slightly worse than others. The reason is that DBSCAN is detecting noise as well.
 
 \begin{figure}[h]
 \centering
@@ -691,7 +692,7 @@ DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting no
 \end{figure}
 
 \begin{table}[h]
-\caption{Results for red-blue-clusters.}
+\caption{Results for red-blue.}
 \label{redblueresults}
 \begin{center}
 \setlength{\tabcolsep}{3pt}
@@ -712,7 +713,7 @@ DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting no
 
 
 \subsection{Nested circle}
-This dataset is actually the most difficult one in our comparison. k-means, ECMC and GMM
+This dataset is actually the most difficult one in our comparison. ECMC, GMM and k-means
 fail to correctly cluster the data. On the other hand, this dataset is easy for DBSCAN and spectral clustering.
 We can see results in table \ref{circleweirdresults}.
 %the outcome are bad results for most of
@@ -777,9 +778,9 @@ We can see results in table \ref{circleweirdresults}.
 
 \subsection{Half-moons}
 
-This dataset showed also as difficult, however algorithms still did better here as in ''nested circle'' dataset. Again
-DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmoonsresults}. However, because of
-DBSCAN noise detection spectral clustering did better.
+This dataset also turned out to be difficult, but algorithms still achieved better scores than with ''nested circle'' dataset.
+DBSCAN and spectral clustering again had no problem (see in table \ref{halfmoonsresults}). However, because of
+DBSCAN's noise detection spectral clustering did better.
 
 \begin{figure}[h]
 \centering
@@ -812,7 +813,7 @@ DBSCAN noise detection spectral clustering did better.
 \begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{dbscan_half-moons.pdf}
-\caption{DBSCAN on half-moons.}
+\caption{DBSCAN on half-moons. Notice the examples marked as noise (green squares).}
 \label{DBSCAN_halfmoons}
 \end{figure}
 
