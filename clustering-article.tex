@@ -621,23 +621,25 @@ For each algorithm comparison on three different artificial datasets was done. T
 is comprised of two linearly separable clusters. The second one, shown in picture \ref{dataset2}, is not linearly separable
 which makes it difficult for some algorithms to cluster it correctly. In this second dataset one
 whole cluster is inside another cluster. The last dataset's shape resembles two half-moons. This dataset is
-not linearly seperable either. Presented on figure \ref{dataset3}.
+not linearly seperable either. Presented on picture \ref{dataset3}.
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{red-blue-clusters.pdf}
 \caption{Dataset named ''red-blue''.}
 \label{dataset1}
 \end{figure}
 
-\begin{figure}[th]
+%\vfill\break
+
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{circle-weird.pdf}
 \caption{Dataset named ''nested-circle''.}
 \label{dataset2}
 \end{figure}
 
-\begin{figure}[ht]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{half-moons.pdf}
 \caption{Dataset named ''half-moons''.}
@@ -645,6 +647,7 @@ not linearly seperable either. Presented on figure \ref{dataset3}.
 \end{figure}
 
 \FloatBarrier
+\clearpage
 
 
 \subsection{Red-Blue}
@@ -652,42 +655,42 @@ not linearly seperable either. Presented on figure \ref{dataset3}.
 This was a simple problem and all algorithms were successful as we can see in table \ref{redblueresults}.
 DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting noise as well.
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{ECMC_red-blue-clusters.pdf}
 \caption{ECMC on red-blue.}
 \label{ECMC_redblue}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{GMM_red-blue-clusters.pdf}
 \caption{GMM on red-blue.}
 \label{GMM_redblue}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{spectral_red-blue-cluster.pdf}
 \caption{Spectral clustering on red-blue.}
 \label{spectral_redblue}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{kmeans_red-blue-clusters.pdf}
 \caption{k-means clustering on red-blue.}
 \label{kmeans_redblue}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{dbscan_red-blue-clusters.pdf}
 \caption{DBSCAN on red-blue.}
 \label{DBSCAN_redblue}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[h]
 \caption{Results for red-blue-clusters.}
 \label{redblueresults}
 \begin{center}
@@ -705,49 +708,53 @@ DBSCAN was slightly worse than others. The reason is that DBSCAN is detecting no
 \end{center}
 \end{table}
 
+\clearpage
+
+
 \subsection{Nested circle}
 This dataset is actually the most difficult one in our comparison. k-means, ECMC and GMM
 fail to correctly cluster the data. On the other hand, this dataset is easy for DBSCAN and spectral clustering.
+We can see results in table \ref{circleweirdresults}.
 %the outcome are bad results for most of
 %the algorithms. As we can see in table \ref{circleweirdresults} the only algorithm that managed
 %to get good result is DBSCAN.
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{ECMC_circle-weird.pdf}
 \caption{ECMC on nested-circle.}
 \label{ECMC_circleweird}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{GMM_circle-weird.pdf}
 \caption{GMM on nested-circle.}
 \label{GMM_circleweird}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{spectral_circle-weird.pdf}
 \caption{Spectral clustering on nested-circle.}
 \label{spectral_circleweird}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{kmeans_circle-weird.pdf}
 \caption{k-means clustering on nested-circle.}
 \label{kmeans_circleweird}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{dbscan_circle-weird.pdf}
 \caption{DBSCAN on nested-circle.}
 \label{DBSCAN_circleweird}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[h]
 \caption{Results for nested-circle.}
 \label{circleweirdresults}
 \begin{center}
@@ -765,6 +772,8 @@ fail to correctly cluster the data. On the other hand, this dataset is easy for 
 \end{center}
 \end{table}
 
+\clearpage
+
 
 \subsection{Half-moons}
 
@@ -772,42 +781,42 @@ This dataset showed also as difficult, however algorithms still did better here 
 DBSCAN and spectral clustering had no problem as we can see in table \ref{halfmoonsresults}. However, because of
 DBSCAN noise detection spectral clustering did better.
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{ECMC_half-moons.pdf}
 \caption{ECMC on half-moons.}
 \label{ECMC_halfmoons}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{GMM_half-moons.pdf}
 \caption{GMM on half-moons.}
 \label{GMM_halfmoons}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{spectral_half-moons.pdf}
 \caption{Spectral clustering on half-moons.}
 \label{spectral_halfmoons}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{kmeans_half-moons.pdf}
 \caption{k-means clustering on half-moons.}
 \label{kmeans_halfmoons}
 \end{figure}
 
-\begin{figure}[th]
+\begin{figure}[h]
 \centering
 \includegraphics[width=15pc]{dbscan_half-moons.pdf}
 \caption{DBSCAN on half-moons.}
 \label{DBSCAN_halfmoons}
 \end{figure}
 
-\begin{table}[htbp]
+\begin{table}[h]
 \caption{Results for half-moons.}
 \label{halfmoonsresults}
 \begin{center}
@@ -824,6 +833,8 @@ DBSCAN noise detection spectral clustering did better.
 \end{tabular}
 \end{center}
 \end{table}
+
+\clearpage
 
 
 \section{Conclusions}
