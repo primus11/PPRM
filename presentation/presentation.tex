@@ -206,8 +206,8 @@
 \begin{frame}
 \frametitle{ECMC}
     \begin{itemize}
-	\item Distance based clustering
-    	\item Constrained minimization
+	\item Two parts: ECM and its extension with Constrained minimization
+    	\item Distance between cluster's members and cluster center is less than distance $D_{thr}$
     \end{itemize}
 \end{frame}
 
@@ -253,6 +253,30 @@
 
 
 \begin{frame}
+\frametitle{DBSCAN}
+    \begin{itemize}
+	\item Density-based clustering
+    	\item Noise detection
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DBSCAN}
+    \begin{figure}[]
+    \includegraphics[scale=0.5]{dbscan_circle-weird.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DBSCAN}
+    \begin{figure}[]
+    \includegraphics[scale=0.5]{dbscan_half-moons.pdf}
+    \end{figure}
+\end{frame}
+
+
+
+\begin{frame}
 \frametitle{Spectral Clustering}
     \begin{itemize}
 	\item Graph-theoretic clustering
@@ -273,31 +297,6 @@
 \frametitle{Spectral Clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{spectral_half-moons.pdf}
-    \end{figure}
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{DBSCAN}
-    \begin{itemize}
-	\item Density-based clustering
-    	\item Noise detection
-   	\item Problem with density parameter
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{DBSCAN}
-    \begin{figure}[]
-    \includegraphics[scale=0.5]{dbscan_circle-weird.pdf}
-    \end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{DBSCAN}
-    \begin{figure}[]
-    \includegraphics[scale=0.5]{dbscan_half-moons.pdf}
     \end{figure}
 \end{frame}
 
