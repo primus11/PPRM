@@ -159,22 +159,55 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Algoritmi}
+\frametitle{Algorithms}
     \begin{itemize}
+   	\item k-means
     	\item ECMC - Evolving Clustering Method with Constrained minimization
    	\item EM GMM - Expectation Maximization Gaussian Mixture Model
    	\item Spectral clustering
-   	\item k-means 
    	\item DBSCAN - Density-Based Spatial Clustering of Applications with Noise
     \end{itemize}
 \end{frame}
 
+
+
+\begin{frame}
+\frametitle{k-means}
+    \begin{itemize}
+   	\item Can produce undesirable results
+   	\item Mostly very fast - k-means++
+	\item Used with other algorithms
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{k-means}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{kmeans_red-blue-clusters.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{k-means}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{kmeans_circle-weird.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{k-means}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{kmeans_half-moons.pdf}
+    \end{figure}
+\end{frame}
+
+
+
 \begin{frame}
 \frametitle{ECMC}
     \begin{itemize}
-    	\item Razširitev ECM
-   	\item Za vsakega člana grozda velja, da je od centra grozda oddaljen manj kot $D_thr$
-   	\item Razširitev spreminja članstvo tako, da član pripada najbližjemu grozdu
+	\item Distance based clustering
+    	\item Constrained minimization
     \end{itemize}
 \end{frame}
 
@@ -198,5 +231,115 @@
     \includegraphics[scale=0.3]{ECMC_half-moons.pdf}
     \end{figure}
 \end{frame}
+
+
+
+\begin{frame}
+\frametitle{EM GMM}
+    \begin{itemize}
+    	\item Statistical method
+   	\item Mixture of Gaussian distributions
+   	\item Using Expectation Maximization to find the solution
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{EM GMM}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{GMM_red-blue-clusters.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{EM GMM}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{GMM_circle-weird.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{EM GMM}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{GMM_half-moons.pdf}
+    \end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Spectral Clustering}
+    \begin{itemize}
+	\item Graph-theoretic clustering
+    	\item Uses standard linear algebra methods to perform dimensionality reduction
+   	\item Similiarity graphs and graph Laplacians
+   	\item Converts to linear problem
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Spectral Clustering}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{spectral_red-blue-cluster.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Spectral Clustering}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{spectral_circle-weird.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Spectral Clustering}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{spectral_half-moons.pdf}
+    \end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{DBSCAN}
+    \begin{itemize}
+	\item Density-based clustering
+    	\item Noise detection
+   	\item Problem with density parameter
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{DBSCAN}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{dbscan_red-blue-clusters.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DBSCAN}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{dbscan_circle-weird.pdf}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DBSCAN}
+    \begin{figure}[]
+    \includegraphics[scale=0.3]{dbscan_half-moons.pdf}
+    \end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Conclusions}
+    \begin{itemize}
+	\item Spectral clustering was best overall
+    	\item DBSCAN was second (noise detection)
+	\item Other algorithms had problem with complex problems
+
+   	\item Appropriate algorithm must be chosen for problem
+    \end{itemize}
+\end{frame}
+
 
 \end{document}
