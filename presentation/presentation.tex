@@ -1,4 +1,5 @@
 \documentclass{beamer}
+\usepackage[utf8]{inputenc}
 \setbeamertemplate{navigation symbols}{}
 
 \usepackage{tikz}
@@ -11,7 +12,10 @@
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
 \begin{document}
 \title{Clustering Overview}
-\author{FRI}
+\author[Bajželj, Drame]{%
+    Primož~Bajželj \and
+    Matej~Drame}
+\institute[FRI]{Faculty of Computer and Information Science, Ljubljana}
 \date{\today} 
 
 \begin{frame}
@@ -21,10 +25,11 @@
 \begin{frame}
 \frametitle{What is clustering?}
     \begin{itemize}
-    \item partitioning into groups of similar objects
-    \item hundreds of algorithms
+    \item Partitioning into groups of similar objects
+    \item Tens of algorithms
     \end{itemize}
 
+\begin{center}
 \begin{tikzpicture}[scale=0.9, text width=1.8cm, text centered]
     \tikzstyle{every node} = [rectangle,draw]
 
@@ -35,16 +40,16 @@
     \node (d) at (4, 3.2) [text width=2.3cm] {Agglomerative};
     \node (e) at (6.8, 3.2) {Divisive};
 
-    \node (f) at (4.4, 1.4) [text width=2.1cm] {Function \\ Optimization};
-    \node (g) at (7.1, 1.4) {Mixture \\ Models};
-    \node (h) at (9.6, 1.4) {Graph \\ Theoretic};
-    \node (i) at (12.2, 1.4) [text width=2.1cm] {Competitive \\ Learning};
+    \node (f) at (5.4, 1.4) [text width=2.1cm] {Function \\ Optimization};
+    \node (g) at (8.1, 1.4) {Mixture \\ Models};
+    \node (h) at (10.6, 1.4) {Graph \\ Theoretic};
+    \node (i) at (13.3, 1.4) [text width=2.1cm] {Competitive \\ Learning};
 
-    \node (j) at (4.0, 0.0) {Information \\ Theoretic};
-    \node (k) at (6.2, 0.0) [text width=1.3cm] {Squared \\ Error};
+    \node (j) at (4.5, 0.0) {Information \\ Theoretic};
+    \node (k) at (6.7, 0.0) [text width=1.3cm] {Squared \\ Error};
 
-    \node (l) at (8.8, 0.0) [text width=1.3cm] {Graph \\ Spectral};
-    \node (m) at (10.8, 0.0) [text width=1.5cm] {Spanning \\ Tree};
+    \node (l) at (9.8, 0.0) [text width=1.3cm] {Graph \\ Spectral};
+    \node (m) at (11.8, 0.0) [text width=1.5cm] {Spanning \\ Tree};
 
     \draw [-] (a) -- (b);
     \draw [-] (a) -- (c);
@@ -63,14 +68,18 @@
     \draw [-] (h) -- (l);
     \draw [-] (h) -- (m);
 \end{tikzpicture}
+\end{center}
+
 \end{frame}
 
 \begin{frame}
 \frametitle{k-means}
     \begin{itemize}
     \item Well-known and widely used
+    \item Centroid-based, squared error minimization
     \item Fast but produces equi-sized clusters (Voronoi)
     \item Examples assigned to the closest cluster, centroids updated, repeat until convergence
+    \item Improvements: k-means++ initialization
     \end{itemize}
 \end{frame}
 
@@ -253,22 +262,28 @@
 
 
 \begin{frame}
-\frametitle{DBSCAN}
+\frametitle{Spectral clustering}
     \begin{itemize}
-	\item Density-based clustering
-    	\item Noise detection
+	\item Graph-theoretic clustering
+    	\item Uses standard linear algebra methods to perform dimensionality reduction
+   	\item Similarity graphs and Laplacian matrices
+    \item High computational complexity
     \end{itemize}
+
+    \begin{center}
+    \includegraphics[scale=0.3]{spectral.png}
+    \end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{DBSCAN}
+\frametitle{Spectral clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{dbscan_circle-weird.pdf}
     \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{DBSCAN}
+\frametitle{Spectral clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{dbscan_half-moons.pdf}
     \end{figure}
@@ -277,24 +292,25 @@
 
 
 \begin{frame}
-\frametitle{Spectral Clustering}
+\frametitle{Density-based clustering}
     \begin{itemize}
-	\item Graph-theoretic clustering
-    	\item Uses standard linear algebra methods to perform dimensionality reduction
-   	\item Similiarity graphs and graph Laplacians
-   	\item Converts to linear problem
+    \item Clusters are areas of higher density
+    \item No need to specify the number of clusters ($k$)
+	\item DBSCAN best known, SNN, OPTICS...
+    \item Noise detection
+   	\item Fails on datasets with large differences in densities
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Spectral Clustering}
+\frametitle{Density-based clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{spectral_circle-weird.pdf}
     \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Spectral Clustering}
+\frametitle{Density-based clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{spectral_half-moons.pdf}
     \end{figure}
@@ -304,13 +320,23 @@
 \begin{frame}
 \frametitle{Conclusions}
     \begin{itemize}
-	\item Spectral clustering best overall in our tests
-    	\item DBSCAN close second (noise detection)
-	\item Other algorithms had problem with complex problems
-
-   	\item Appropriate algorithm must be chosen for problem
+    \item Spectral clustering best overall in our tests
+    \item DBSCAN close second (noise detection)
+    \item Other algorithms had problem with complex problems
+    \item Appropriate algorithm must be chosen for the problem
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}
+\frametitle{Applications}
+    \begin{itemize}
+    \item Image segmentation, medical imaging
+    \item Recommender systems
+    \item Market research
+    \item Bioinformatics
+    \item Document storage and retrieval
+    \end{itemize}
+\end{frame}
 
 \end{document}
