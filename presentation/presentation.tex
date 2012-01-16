@@ -258,11 +258,12 @@
 
 
 \begin{frame}
-\frametitle{Spectral Clustering}
+\frametitle{Spectral clustering}
     \begin{itemize}
 	\item Graph-theoretic clustering
     	\item Uses standard linear algebra methods to perform dimensionality reduction
-   	\item Similarity graphs and graph Laplacians
+   	\item Similarity graphs and Laplacian matrices
+    \item High computational complexity
     \end{itemize}
 
     \begin{center}
@@ -271,14 +272,14 @@
 \end{frame}
 
 \begin{frame}
-\frametitle{Spectral Clustering}
+\frametitle{Spectral clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{spectral_circle-weird.pdf}
     \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Spectral Clustering}
+\frametitle{Spectral clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{spectral_half-moons.pdf}
     \end{figure}
@@ -287,23 +288,25 @@
 
 
 \begin{frame}
-\frametitle{DBSCAN}
+\frametitle{Density-based clustering}
     \begin{itemize}
-	\item Density-based clustering
-    	\item Noise detection
-   	\item Problem with density parameter
+    \item Clusters are areas of higher density
+    \item No need to specify the number of clusters ($k$)
+	\item DBSCAN best known, SNN, OPTICS...
+    \item Noise detection
+   	\item Fails on datasets with large differences in densities
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{DBSCAN}
+\frametitle{Density-based clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{dbscan_circle-weird.pdf}
     \end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{DBSCAN}
+\frametitle{Density-based clustering}
     \begin{figure}[]
     \includegraphics[scale=0.5]{dbscan_half-moons.pdf}
     \end{figure}
